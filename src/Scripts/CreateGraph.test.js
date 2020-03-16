@@ -1,4 +1,4 @@
-import { updatePosition, getAngle, getThirdSide } from './GraphScript';
+import { updatePosition, getAngle, getThirdSide } from './CreateGraph';
 
 
 /*Expecting object to step 1 unit away from target*/

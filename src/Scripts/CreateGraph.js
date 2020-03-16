@@ -2,17 +2,46 @@
 restDistance = distance nodes will aim to be floating from eachother.
 nodes must be objects with an id, x and y, edges are objects with parent and child (id).*/
 
-function run(screenWidth, screenHeight, restDistance, nodes, edges) {
+function createGraph(screenWidth, screenHeight, restDistance, nodes, edges) {
     let length = getThirdSide(3, restDistance);
-    for (var x = 0; x < 1000; x++) {
+    var breaker = 0
+    for (var x = 0; x < 20; x++) {
         relatedDisperse(nodes, edges, restDistance);
         unrelatedDisperse(nodes, edges, length, restDistance)
         relatedJoin(nodes, edges, restDistance);
+        dontExitScreen(nodes, screenHeight);
     }
-    calculateRealPositions(screenWidth, screenHeight, nodes);
-    return [nodes, edges]
+    /*
+    while(breaker<10){
+        breaker++;
+        for (var x = 0; x < 20; x++) {
+            relatedDisperse(nodes, edges, restDistance);
+            unrelatedDisperse(nodes, edges, length, restDistance)
+            relatedJoin(nodes, edges, restDistance);
+            dontExitScreen(nodes, screenHeight);
+        }
+    }*/
+
+    var positions = calculateRealPositions(screenWidth, screenHeight, nodes);
+    var lines = calculateLines(nodes, edges)
+    return [positions, lines]
 }
 
+function calculateLines(nodes, edges) {
+    var lines = [];
+    for (var i = 0; i < edges.length; i++) {
+        let parent = getNode(nodes, edges[i].parent);
+        let child = getNode(nodes, edges[i].child);
+        let line = {
+            "parentx": parent.x,
+            "parenty": parent.y,
+            "childx": child.x,
+            "childy": child.y
+        }
+        lines.push(line);
+    }
+    return lines
+}
 
 function getNode(nodes, id) {
     for (var i = 0; i < nodes.length; i++) {
@@ -40,9 +69,9 @@ function unrelatedDisperse(nodes, edges, restDistance) {
         for (var j = 0; j < nodes.length; j++) {
             if (i != j) {
                 if (!hasLink(edges, nodes[i], nodes[j])) {
-                    if (getDist(nodes[i], nodes[j]) < 5) {
-                        updatePosition(nodes[i], nodes[j], -10)
-                        updatePosition(nodes[j], nodes[i], -10)
+                    if (getDist(nodes[i], nodes[j]) < 3) {
+                        updatePosition(nodes[i], nodes[j], -15)
+                        updatePosition(nodes[j], nodes[i], -15)
                     }
                     if (getDist(nodes[i], nodes[j]) < 10) {
                         updatePosition(nodes[i], nodes[j], -3)
@@ -81,11 +110,26 @@ function relatedDisperse(nodes, edges, restDistance) {
             child.x += getRandom(-2, +2)
             child.y += getRandom(-2, +2)
         }
+
         if (getDist(child, parent) < restDistance) {
-            updatePosition(child, parent, -3)
+            updatePosition(child, parent, -4)
         }
         if (getDist(child, parent) < 5) {
-            updatePosition(child, parent, -5)
+            updatePosition(child, parent, -6)
+        }
+        
+    }
+}
+
+function dontExitScreen(nodes, screenHeight) {
+    for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].hierarchy > 1) {
+            if (nodes[i].y < 5) {
+                nodes[i].y += 1
+            }
+            if (nodes[i].y > screenHeight - 5) {
+                nodes[i].y -=1
+            }
         }
     }
 }
@@ -97,6 +141,7 @@ function calculateRealPositions(screenWidth, screenHeight, nodes) {
         nodes[i].x = xoffset + nodes[i].x * 10;
         nodes[i].y = yoffset + nodes[i].y * 10;
     }
+    return nodes
 }
 
 
@@ -106,6 +151,9 @@ function calculateRealPositions(screenWidth, screenHeight, nodes) {
 function updatePosition(node, target, step) {
     if (node.hierarchy <= 1) {
         return
+    }
+    if (target.hierarchy == 0) {
+        step -= 5;
     }
     let angle = getAngle(target, node);
     let new_x = node.x + step * Math.cos(angle * Math.PI / 180)
@@ -141,7 +189,7 @@ function getDist(parent, child) {
 
 
 
-//export {getAngle, updatePosition, getThirdSide}
+export { getAngle, updatePosition, getThirdSide, createGraph }
 
 /*
 for each node o1
@@ -154,8 +202,8 @@ for each node o1
 
 for each node o1
    move(o1, force[o1])
-   
-   
+
+
    function getRoot(nodes, edges) {
     var nodeList = nodes.map(x => x.id);
     for (var i = 0; i < nodes.length; i++) {
