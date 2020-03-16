@@ -1,9 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import {App, total} from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const add = jest.fn(() => 3);
+
+test('<add>', () => {
+  expect(add(1,2)).toBe(3);
+  expect(true).toBeTruthy()
+  expect(total(10, 15)).toBe("$25")
 });
