@@ -6,7 +6,7 @@ function createNodes() {
 }
 
 function initPosition(node, angle) {
-    let step = 20;
+    let step = 25;
     let new_x = node.x + step * Math.cos(angle * Math.PI / 180)
     let new_y = node.y + step * Math.sin(angle * Math.PI / 180)
     node.x = new_x;
@@ -27,36 +27,35 @@ function initNodes() {
     var nodes = [];
     let start = 0;
     nodes.push(createNode("#", start, start, 0, "nickynw.github.io"));
-    nodes.push(createNode("1", start, start, 1, "Contact"));
     nodes.push(createNode("2", start, start, 1, "Art"));
     nodes.push(createNode("3", start, start, 1, "Software Engineering"));
-    nodes.push(createNode("A", start, start, 2.5, "LinkedIn"));
-    nodes.push(createNode("B", start, start, 2.5, "Github"));
-    nodes.push(createNode("C", start, start, 2.5, "Email"));
-    nodes.push(createNode("L", start, start, 2, "Graphics"));
-    nodes.push(createNode("M", start, start, 2, "Paintings"));
+    nodes.push(createNode("L", start, start, 2, "Nature"));
+    nodes.push(createNode("M", start, start, 2, "3D Acrylic"));
+    nodes.push(createNode("I", start, start, 2.5, "Portraits"));
+    nodes.push(createNode("O", start, start, 2.5, "Graphics"));
+    nodes.push(createNode("U", start, start, 2.5, "Paintings"));
     nodes.push(createNode("N", start, start, 2, "Patterns"));
     nodes.push(createNode("X", start, start, 2, "Multiple-Choice Question Generator"));
-    nodes.push(createNode("Y", start, start, 2, "(MSc) Learning about Parkinson's through Haptic VR"));
+    nodes.push(createNode("Y", start, start, 2, "This Website"));
     nodes.push(createNode("Z", start, start, 2, "Unchained - Independent Cafe finder"));
-    nodes.push(createNode("W", start, start, 2, "This Website"));
+    nodes.push(createNode("W", start, start, 2, "(MSc) Learning about Parkinson's through Haptic VR"));
     nodes.push(createNode(".", start, start, 3));
     nodes.push(createNode(",", start, start, 3));
     nodes.push(createNode("'", start, start, 3));
-    initPosition(getNode(nodes, "1"), 270)
-    initPosition(getNode(nodes, "2"), 30)
-    initPosition(getNode(nodes, "3"), 150)
+    nodes.push(createNode("4", start, start, 3));
+    nodes.push(createNode("5", start, start, 3));
+    nodes.push(createNode("6", start, start, 3));
+    nodes.push(createNode("7", start, start, 3));
+    nodes.push(createNode("8", start, start, 3));
+    initPosition(getNode(nodes, "2"), 0)
+    initPosition(getNode(nodes, "3"), 180)
     return nodes;
 }
 
 function initEdges() {
     var edges = [];
-    edges.push({ "parent": "#", "child": "1" })
     edges.push({ "parent": "#", "child": "2" })
     edges.push({ "parent": "#", "child": "3" })
-    edges.push({ "parent": "1", "child": "A" })
-    edges.push({ "parent": "1", "child": "B" })
-    edges.push({ "parent": "1", "child": "C" })
     edges.push({ "parent": "2", "child": "L" })
     edges.push({ "parent": "2", "child": "M" })
     edges.push({ "parent": "2", "child": "N" })
@@ -64,10 +63,18 @@ function initEdges() {
     edges.push({ "parent": "3", "child": "Y" })
     edges.push({ "parent": "3", "child": "Z" })
     edges.push({ "parent": "3", "child": "W" })
-    edges.push({ "parent": "Z", "child": "." })
+    edges.push({ "parent": "Z", "child": "." }) 
     edges.push({ "parent": "Z", "child": "," })
     edges.push({ "parent": "Y", "child": "," })
     edges.push({ "parent": "X", "child": "'" })
+    edges.push({ "parent": "M", "child": "I" })
+    edges.push({ "parent": "M", "child": "O" })
+    edges.push({ "parent": "M", "child": "U" })
+    edges.push({ "parent": "W", "child": "4" })
+    edges.push({ "parent": "W", "child": "8" })
+    edges.push({ "parent": "X", "child": "5" })
+    edges.push({ "parent": "X", "child": "7" })
+    edges.push({ "parent": "Y", "child": "6" })
     return edges
 }
 

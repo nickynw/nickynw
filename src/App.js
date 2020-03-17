@@ -74,7 +74,7 @@ function getHeight() {
     document.body.offsetHeight,
     document.documentElement.offsetHeight,
     document.documentElement.clientHeight
-  )+200;
+  )-20;
 }
 
 export default App;

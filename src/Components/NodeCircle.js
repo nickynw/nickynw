@@ -19,11 +19,11 @@ function commonStyle(size, props, color){
 function NodeCircle(props) {
     var Node = <p></p>
     if (props.node.hierarchy == 0) {
-        const style = commonStyle(210, props, "#738fff");
+        const style = commonStyle(250, props, "#738fff");
         Node = (
             <div style={style} className="dot">
             <p style={{ color: 'white', marginTop: 5 }}>{props.node.id}</p>
-            <p>{props.node.info}</p>
+            <p style={{marginTop: -10}}>{props.node.info}</p>
             </div>
         )
     }
@@ -32,25 +32,25 @@ function NodeCircle(props) {
         Node = (
             <div style={style} className="dot">
             <p style={{ color: 'white', marginTop: 5 }}>{props.node.id}</p>
-            <p>{props.node.info}</p>
+            <p style={{marginTop: -10}}>{props.node.info}</p>
             </div>
         )
     }
     if (props.node.hierarchy == 2) {
-        const style = commonStyle(110, props, "#a1aad1");
+        const style = commonStyle(120, props, "#a1aad1");
         Node = (
             <div style={style} className="dot">
             <p style={{ color: 'white', marginTop: 5 }}>{props.node.id}</p>
-            <p>{props.node.info}</p>
+            <p style={{marginTop: -10}}>{props.node.info}</p>
             </div>
         )
     }
     if (props.node.hierarchy == 2.5) {
-        const style = commonStyle(90, props, "#898991");
+        const style = commonStyle(70, props, "#898991");
         Node = (
             <div style={style} className="dot">
             <p style={{ color: 'white', marginTop: 5 }}>{props.node.id}</p>
-            <p>{props.node.info}</p>
+            <p style={{marginTop: -10}}>{props.node.info}</p>
             </div>
         )
     }

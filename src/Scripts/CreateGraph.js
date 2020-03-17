@@ -4,9 +4,8 @@ nodes must be objects with an id, x and y, edges are objects with parent and chi
 
 function createGraph(width, height, restDistance, nodes, edges) {
     let screenHeight = 1000;
-    restDistance = 17;
+    restDistance = 18;
     let length = getThirdSide(3, restDistance);
-    var breaker = 0
     for (var x = 0; x < 100; x++) {
         unrelatedDisperse(nodes, edges, length, restDistance)
         relatedJoin(nodes, edges, restDistance);
@@ -74,16 +73,16 @@ function unrelatedDisperse(nodes, edges, restDistance) {
                 if (!hasLink(edges, nodes[i], nodes[j])) {
 
                     if (getDist(nodes[i], nodes[j]) < 5) {
-                        updatePosition(nodes[i], nodes[j], -15)
-                        updatePosition(nodes[j], nodes[i], -15)
+                        updatePosition(nodes[i], nodes[j], -30)
+                        updatePosition(nodes[j], nodes[i], -25)
                     }
                     else if (getDist(nodes[i], nodes[j]) < 15) {
-                        updatePosition(nodes[i], nodes[j], -8)
-                        updatePosition(nodes[j], nodes[i], -8)
+                        updatePosition(nodes[i], nodes[j], -12)
+                        updatePosition(nodes[j], nodes[i], -12)
                     }
                     else if (getDist(nodes[i], nodes[j]) < 20) {
-                        updatePosition(nodes[i], nodes[j], -1)
-                        updatePosition(nodes[j], nodes[i], -1)
+                        updatePosition(nodes[i], nodes[j], -0.5)
+                        updatePosition(nodes[j], nodes[i], -0.5)
                     }
                     else if (getDist(nodes[i], nodes[j]) < 30) {
                         updatePosition(nodes[i], nodes[j], -0.5)
@@ -100,8 +99,12 @@ function relatedJoin(nodes, edges, restDistance) {
     for (var i = 0; i < edges.length; i++) {
         let parent = getNode(nodes, edges[i].parent);
         let child = getNode(nodes, edges[i].child);
-        if (parent.hierarchy==2 && getDist(parent, child) > restDistance/2) {
+        if (parent.hierarchy==2 && child.hierarchy==3 && getDist(parent, child) > restDistance/2) {
             let step = getDist(parent, child) - restDistance/2;
+            updatePosition(child, parent, step)
+        }
+        if (parent.hierarchy==2 && child.hierarchy==2.5 && getDist(parent, child) > restDistance/1.7) {
+            let step = getDist(parent, child) - restDistance/1.7;
             updatePosition(child, parent, step)
         }
         else if (getDist(parent, child) > restDistance) {
@@ -138,10 +141,10 @@ function dontExitScreen(nodes, screenHeight) {
     for (var i = 0; i < nodes.length; i++) {
         if (nodes[i].hierarchy > 1) {
             if (nodes[i].y < 6) {
-                nodes[i].y += 1
+                nodes[i].y += 2
             }
             if (nodes[i].y > screenHeight - 6) {
-                nodes[i].y -= 1
+                nodes[i].y -= 2
             }
         }
     }
