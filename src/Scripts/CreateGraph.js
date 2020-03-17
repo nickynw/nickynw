@@ -2,16 +2,19 @@
 restDistance = distance nodes will aim to be floating from eachother.
 nodes must be objects with an id, x and y, edges are objects with parent and child (id).*/
 
-function createGraph(screenWidth, screenHeight, restDistance, nodes, edges) {
+function createGraph(width, height, restDistance, nodes, edges) {
+    let screenHeight = 1000;
+    restDistance = 17;
     let length = getThirdSide(3, restDistance);
     var breaker = 0
-    for (var x = 0; x < 20; x++) {
-        relatedDisperse(nodes, edges, restDistance);
+    for (var x = 0; x < 100; x++) {
         unrelatedDisperse(nodes, edges, length, restDistance)
         relatedJoin(nodes, edges, restDistance);
+        relatedDisperse(nodes, edges, restDistance);
         dontExitScreen(nodes, screenHeight);
     }
     /*
+    1366 584
     while(breaker<10){
         breaker++;
         for (var x = 0; x < 20; x++) {
@@ -22,7 +25,7 @@ function createGraph(screenWidth, screenHeight, restDistance, nodes, edges) {
         }
     }*/
 
-    var positions = calculateRealPositions(screenWidth, screenHeight, nodes);
+    var positions = calculateRealPositions(width, height, nodes);
     var lines = calculateLines(nodes, edges)
     return [positions, lines]
 }
@@ -69,17 +72,22 @@ function unrelatedDisperse(nodes, edges, restDistance) {
         for (var j = 0; j < nodes.length; j++) {
             if (i != j) {
                 if (!hasLink(edges, nodes[i], nodes[j])) {
-                    if (getDist(nodes[i], nodes[j]) < 3) {
+
+                    if (getDist(nodes[i], nodes[j]) < 5) {
                         updatePosition(nodes[i], nodes[j], -15)
                         updatePosition(nodes[j], nodes[i], -15)
                     }
-                    if (getDist(nodes[i], nodes[j]) < 10) {
-                        updatePosition(nodes[i], nodes[j], -3)
-                        updatePosition(nodes[j], nodes[i], -3)
+                    else if (getDist(nodes[i], nodes[j]) < 15) {
+                        updatePosition(nodes[i], nodes[j], -8)
+                        updatePosition(nodes[j], nodes[i], -8)
                     }
-                    if (getDist(nodes[i], nodes[j]) < 15) {
+                    else if (getDist(nodes[i], nodes[j]) < 20) {
                         updatePosition(nodes[i], nodes[j], -1)
                         updatePosition(nodes[j], nodes[i], -1)
+                    }
+                    else if (getDist(nodes[i], nodes[j]) < 30) {
+                        updatePosition(nodes[i], nodes[j], -0.5)
+                        updatePosition(nodes[j], nodes[i], -0.5)
                     }
                 }
             }
@@ -92,11 +100,13 @@ function relatedJoin(nodes, edges, restDistance) {
     for (var i = 0; i < edges.length; i++) {
         let parent = getNode(nodes, edges[i].parent);
         let child = getNode(nodes, edges[i].child);
-        if (getDist(parent, child) > restDistance) {
-            updatePosition(child, parent, 3)
+        if (parent.hierarchy==2 && getDist(parent, child) > restDistance/2) {
+            let step = getDist(parent, child) - restDistance/2;
+            updatePosition(child, parent, step)
         }
-        if (getDist(parent, child) > 18) {
-            updatePosition(child, parent, 12)
+        else if (getDist(parent, child) > restDistance) {
+            let step = getDist(parent, child) - restDistance;
+            updatePosition(child, parent, step)
         }
     }
 }
@@ -110,12 +120,15 @@ function relatedDisperse(nodes, edges, restDistance) {
             child.x += getRandom(-2, +2)
             child.y += getRandom(-2, +2)
         }
-
         if (getDist(child, parent) < restDistance) {
-            updatePosition(child, parent, -4)
-        }
-        if (getDist(child, parent) < 5) {
-            updatePosition(child, parent, -6)
+            let step = restDistance - getDist(child, parent)
+            if(parent.hierarchy==1){
+                step/=2;
+            }
+            if(parent.hierarchy==2){
+                step/=4;
+            }
+            updatePosition(child, parent, -step)
         }
         
     }
@@ -124,11 +137,11 @@ function relatedDisperse(nodes, edges, restDistance) {
 function dontExitScreen(nodes, screenHeight) {
     for (var i = 0; i < nodes.length; i++) {
         if (nodes[i].hierarchy > 1) {
-            if (nodes[i].y < 5) {
+            if (nodes[i].y < 6) {
                 nodes[i].y += 1
             }
-            if (nodes[i].y > screenHeight - 5) {
-                nodes[i].y -=1
+            if (nodes[i].y > screenHeight - 6) {
+                nodes[i].y -= 1
             }
         }
     }

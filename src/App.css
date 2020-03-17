@@ -13,6 +13,21 @@
   }
 }
 
+.container1{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container2{
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding-right: 20px;
+}
+
+
+
 .dot {
   background-color: #bbb;
   border-radius: 50%;
