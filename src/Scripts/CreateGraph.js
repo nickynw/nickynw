@@ -4,7 +4,7 @@ nodes must be objects with an id, x and y, edges are objects with parent and chi
 
 function createGraph(width, height, restDistance, nodes, edges) {
     let screenHeight = 1000;
-    restDistance = 18;
+    restDistance = 21;
     let length = getThirdSide(3, restDistance);
     for (var x = 0; x < 100; x++) {
         unrelatedDisperse(nodes, edges, length, restDistance)
@@ -73,16 +73,16 @@ function unrelatedDisperse(nodes, edges, restDistance) {
                 if (!hasLink(edges, nodes[i], nodes[j])) {
 
                     if (getDist(nodes[i], nodes[j]) < 5) {
-                        updatePosition(nodes[i], nodes[j], -30)
-                        updatePosition(nodes[j], nodes[i], -25)
+                        updatePosition(nodes[i], nodes[j], -15)
+                        updatePosition(nodes[j], nodes[i], -15)
                     }
-                    else if (getDist(nodes[i], nodes[j]) < 15) {
-                        updatePosition(nodes[i], nodes[j], -12)
-                        updatePosition(nodes[j], nodes[i], -12)
+                    else if (getDist(nodes[i], nodes[j]) < 10) {
+                        updatePosition(nodes[i], nodes[j], -10)
+                        updatePosition(nodes[j], nodes[i], -10)
                     }
                     else if (getDist(nodes[i], nodes[j]) < 20) {
-                        updatePosition(nodes[i], nodes[j], -0.5)
-                        updatePosition(nodes[j], nodes[i], -0.5)
+                        updatePosition(nodes[i], nodes[j], -2)
+                        updatePosition(nodes[j], nodes[i], -2)
                     }
                     else if (getDist(nodes[i], nodes[j]) < 30) {
                         updatePosition(nodes[i], nodes[j], -0.5)
@@ -103,8 +103,8 @@ function relatedJoin(nodes, edges, restDistance) {
             let step = getDist(parent, child) - restDistance/2;
             updatePosition(child, parent, step)
         }
-        if (parent.hierarchy==2 && child.hierarchy==2.5 && getDist(parent, child) > restDistance/1.7) {
-            let step = getDist(parent, child) - restDistance/1.7;
+        if (parent.hierarchy==2 && child.hierarchy==2.5 && getDist(parent, child) > restDistance/1.8) {
+            let step = getDist(parent, child) - restDistance/1.8;
             updatePosition(child, parent, step)
         }
         else if (getDist(parent, child) > restDistance) {

@@ -29,12 +29,12 @@ function initNodes() {
     nodes.push(createNode("#", start, start, 0, "nickynw.github.io"));
     nodes.push(createNode("2", start, start, 1, "Art"));
     nodes.push(createNode("3", start, start, 1, "Software Engineering"));
-    nodes.push(createNode("L", start, start, 2, "Nature"));
-    nodes.push(createNode("M", start, start, 2, "3D Acrylic"));
+    nodes.push(createNode("M", start, start, 2.5, "3D Acrylic"));
     nodes.push(createNode("I", start, start, 2.5, "Portraits"));
     nodes.push(createNode("O", start, start, 2.5, "Graphics"));
-    nodes.push(createNode("U", start, start, 2.5, "Paintings"));
-    nodes.push(createNode("N", start, start, 2, "Patterns"));
+    nodes.push(createNode("U", start, start, 2.5, "Nature & Space"));
+    nodes.push(createNode("N", start, start, 2.5, "Patterns"));
+    nodes.push(createNode("J", start, start, 2.5, "Other Projects"));
     nodes.push(createNode("X", start, start, 2, "Multiple-Choice Question Generator"));
     nodes.push(createNode("Y", start, start, 2, "This Website"));
     nodes.push(createNode("Z", start, start, 2, "Unchained - Independent Cafe finder"));
@@ -56,20 +56,20 @@ function initEdges() {
     var edges = [];
     edges.push({ "parent": "#", "child": "2" })
     edges.push({ "parent": "#", "child": "3" })
-    edges.push({ "parent": "2", "child": "L" })
     edges.push({ "parent": "2", "child": "M" })
+    edges.push({ "parent": "2", "child": "I" })
+    edges.push({ "parent": "2", "child": "O" })
+    edges.push({ "parent": "2", "child": "U" })
     edges.push({ "parent": "2", "child": "N" })
     edges.push({ "parent": "3", "child": "X" })
     edges.push({ "parent": "3", "child": "Y" })
     edges.push({ "parent": "3", "child": "Z" })
+    edges.push({ "parent": "3", "child": "J" })
     edges.push({ "parent": "3", "child": "W" })
     edges.push({ "parent": "Z", "child": "." }) 
     edges.push({ "parent": "Z", "child": "," })
     edges.push({ "parent": "Y", "child": "," })
     edges.push({ "parent": "X", "child": "'" })
-    edges.push({ "parent": "M", "child": "I" })
-    edges.push({ "parent": "M", "child": "O" })
-    edges.push({ "parent": "M", "child": "U" })
     edges.push({ "parent": "W", "child": "4" })
     edges.push({ "parent": "W", "child": "8" })
     edges.push({ "parent": "X", "child": "5" })
