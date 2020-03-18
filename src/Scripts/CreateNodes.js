@@ -41,7 +41,7 @@ function initNodes() {
     var nodes = [];
     let start = 0;
     nodes.push(createNode("#", start, start, 0, "nickynw.github.io"));
-    nodes.push(createNode("c1", start, start, 1, "Art"));
+    nodes.push(createNode("c1", start, start, 1, "Art and Design"));
     nodes.push(createNode("c2", start, start, 1, "Software Engineering"));
     nodes.push(createNode("M", start, start, 2.5, "3D Acrylic"));
     nodes.push(createNode("I", start, start, 2.5, "Portraits"));

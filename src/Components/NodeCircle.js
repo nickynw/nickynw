@@ -1,6 +1,6 @@
 
 import React, { View } from 'react';
-
+import '../App.css';
 
 
 
@@ -20,7 +20,7 @@ function textStyleTemplate(size, color){
     return {
          fontSize: size,
          color: color,
-         marginTop: 23,
+         marginTop: 25,
          marginLeft: 10,
          marginRight: 10,
          textAlign: "center",
@@ -31,7 +31,7 @@ function textStyleTemplate(size, color){
 }
 
 const greetingStyle = {
-    marginTop: 10,
+    marginTop: 0,
     marginLeft: 10,
     marginRight: 10,
     fontSize: 12,
@@ -44,22 +44,22 @@ function selectStyle(props){
     var textStyle = {}
     if (props.node.hierarchy == 0) {
         nodeStyle = nodeStyleTemplate(250, props, "#6c649c");
-        textStyle = textStyleTemplate(15, "black")
+        textStyle = textStyleTemplate(20, "black")
     }
     //CATEGORY NODE
     if (props.node.hierarchy == 1) {
         nodeStyle = nodeStyleTemplate(120, props, "#292469");
-        textStyle = textStyleTemplate(18,"white")
+        textStyle = textStyleTemplate(18,"#829599")
     }
     //MAJOR PROJECT NODE
     if (props.node.hierarchy == 2) {
-        nodeStyle = nodeStyleTemplate(130, props, "#a1aad1");
-        textStyle = textStyleTemplate(13, "black")
+        nodeStyle = nodeStyleTemplate(130, props, "#4c4769");
+        textStyle = textStyleTemplate(13, "#c2c1b4")
     }
     //MINOR PROJECT NODE
     if (props.node.hierarchy == 2.5) {
         nodeStyle = nodeStyleTemplate(70, props, "#898991");
-        textStyle = textStyleTemplate(12, "black")
+        textStyle = textStyleTemplate(12, "#242829")
     }
     return [nodeStyle, textStyle]
 }
@@ -96,12 +96,11 @@ function NodeCircle(props) {
         Node = (
             <div style={nodeStyle} className="dot">
             <p style={textStyle}><b><br/>{props.node.info}</b></p>
-            <p style={greetingStyle} >
-            Hello, and welcome to my website! <br/><br/>
+            <span  ><p style={greetingStyle}>
+            Hello, and welcome to my website! <br/>
                 Here are my latest projects together in one place for you to explore. 
-                <u>I am currently looking for a job as a junior software engineer.</u> You can contact me via 
-                LinkedIn, github or email below.
-                <br/><br/>Cheers, Nick.</p>
+                <span className="highlight"><u>I am currently looking for a job as a junior software engineer.</u> </span> You can contact me via <a href="https://www.linkedin.com/in/nicknwilson/">LinkedIn</a>, <a href="https://github.com/nickynw">Github</a> or email (nicknwilson@outlook.com).
+                <br/><br/>Cheers, Nick.</p></span>
             
             </div>
         )

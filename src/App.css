@@ -2,11 +2,19 @@
   text-align: center;
 }
 
+.centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Fixed
 {
     position: fixed;
     top: 20px;
 }
+
+.highlight { color: #ffedc4 ; }
 
 
 .App-logo {
