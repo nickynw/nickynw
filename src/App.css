@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.Fixed
+{
+    position: fixed;
+    top: 20px;
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -26,7 +33,10 @@
   padding-right: 20px;
 }
 
-
+/* Hide scrollbar for IE and Edge */
+.example {
+  overflow-x: hidden; 
+} 
 
 .dot {
   background-color: #bbb;
