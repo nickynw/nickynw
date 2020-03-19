@@ -65,7 +65,6 @@ const types = {
       display: "block",
       color: "#bfbfb0",
       fontSize: 14,
-      fontFamily: "Lucida Console"
     }
   },
   "C": {
@@ -84,8 +83,8 @@ const types = {
 
 class Node extends React.Component {
   render() {
-    var x = this.props.node.x * 40 - types[this.props.node.type].width / 2 - 10
-    var y = this.props.node.y * 40 - types[this.props.node.type].height / 2 - 10
+    var x = this.props.node.x * 40 
+    var y = this.props.node.y * 40 - types[this.props.node.type].height / 2 
 
     const style = {
       position: "absolute",
@@ -142,19 +141,18 @@ const conv = (n) => n * 40
 
 class Curve extends React.Component {
   render() {
-    let x1 = this.props.values.x1 
+    let x1 = this.props.values.x1 + (types[this.props.values.type].width+10)/40
     let x2 = this.props.values.x2
     let y1 = this.props.values.y1
     let y2 = this.props.values.y2
-    let xa = (this.props.values.x1) - (x1 - x2) * 0.5
-    let ya = (this.props.values.y1) - (y2 - y1) * 0.07
-    let xb = (this.props.values.x2) - (x2 - x1) * 0.35
-    let yb = (this.props.values.y2) - (y2 - y1) * 0.45
-    //<circle cx={`${conv(xa)}`} cy={`${conv(ya)}`}  r="4" stroke="black" stroke-width="1" fill="red" />
-    //<circle cx={`${conv(xb)}`} cy={`${conv(yb)}`}  r="4" stroke="black" stroke-width="1" fill="blue" />
+    let xa = (x1) + (x2-x1)/2 * 0.8
+    let ya = (this.props.values.y1) 
+    let xb = (x2) - (x2 - x1) * 0.4
+    let yb = (this.props.values.y2) - (y2 - y1) * 0.5
+
     return (
       <svg>
-        <path d={`M  ${conv(x1)},${conv(y1)}  Q ${conv(xa)},${conv(ya)} ${conv(xb)},${conv(yb)} T ${conv(x2)} ${conv(y2)}`}
+        <path  style={{ }} d={`M  ${conv(x1)},${conv(y1)}  Q ${conv(xa)},${conv(ya)} ${conv(xb)},${conv(yb)} T ${conv(x2)} ${conv(y2)}`}
           fill="none" stroke="white" strokeWidth="1" />
       </svg>
 
@@ -162,7 +160,12 @@ class Curve extends React.Component {
   }
 }
 
-
+/*
+ <circle style={{}}cx={`${conv(x1)+2}`} cy={`${conv(y1)}`}  r="8" stroke="white" stroke-width="2" fill="#b4a3d1" />
+  <circle cx={`${conv(x1)}`} cy={`${conv(y1)}`}  r="4" stroke="black" stroke-width="1" fill="green" />
+         <circle cx={`${conv(xa)}`} cy={`${conv(ya)}`}  r="4" stroke="black" stroke-width="1" fill="red" />
+         <circle cx={`${conv(xb)}`} cy={`${conv(yb)}`}  r="4" stroke="black" stroke-width="1" fill="blue" />
+         */
 
 
 export default App;
