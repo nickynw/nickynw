@@ -4,7 +4,7 @@ var lines = []
 
 function getNodes(){
   let nodes = {
-    "1": {x:0, y:8, type:"A", text:"nickynw"},
+    "1": {x:-1, y:8, type:"A", text:"nickynw"},
     "2": {x:4, y:10, type:"B", text:"Art and Design"},
     "3": {x:4, y:6, type:"B", text:"Software Engineering"},
     "4": {x:8, y:2, type:"C", text:"Unchained - An Independent Cafe Finding App", images:["reactnative", "javascript"]},
