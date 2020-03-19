@@ -9,8 +9,9 @@ import { graphObjects } from "./Nodes"
 export const add = (x, y) => x + y;
 export const total = (shipping, subTotal) => "$" + (add(shipping, subTotal)).toString();
 
-const screenWidth = document.documentElement.clientWidth - 20
-const screenHeight = document.documentElement.clientHeight - 150
+const screenWidth = getWidth() - 20
+const screenHeight = getHeight() - 150
+
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 
       <div style={{ position: "absolute", marginLeft: 120, width: screenWidth - 120, height: screenHeight }} >
         {nodeDisplay}
-        <svg style={{ zIndex: -1, position: "absolute", width: "100%", height: "100%" }}>
+        <svg style={{ zIndex: -1, position: "absolute", width: screenWidth - 120, height: screenHeight }}>
           {lineDisplay}
         </svg>
       </div>
@@ -75,7 +76,7 @@ const types = {
       display: "block",
       color: "#1e0a40",
       fontSize: 13,
-      
+
     }
   }
 }
@@ -83,8 +84,8 @@ const types = {
 
 class Node extends React.Component {
   render() {
-    var x = this.props.node.x * 40 
-    var y = this.props.node.y * 40 - types[this.props.node.type].height / 2 
+    var x = this.props.node.x * 40
+    var y = this.props.node.y * 40 - types[this.props.node.type].height / 2
 
     const style = {
       position: "absolute",
@@ -108,10 +109,10 @@ class Node extends React.Component {
 
     var imageDisplay = [];
     var images = this.props.node.images;
-    if (images!=undefined) {
+    if (images != undefined) {
       images.forEach((url, index) => {
         const imageStyle = {
-          width:50, 
+          width: 50,
           height: 50,
           display: "flex",
           position: "absolute",
@@ -127,11 +128,11 @@ class Node extends React.Component {
 
     return (
       <div>
-      <div style={style}>
-        <p style={fontStyle}>
-          {this.props.node.text}
-        </p>  
-      </div> {imageDisplay}
+        <div style={style}>
+          <p style={fontStyle}>
+            {this.props.node.text}
+          </p>
+        </div> {imageDisplay}
       </div>
     )
   }
@@ -141,21 +142,18 @@ const conv = (n) => n * 40
 
 class Curve extends React.Component {
   render() {
-    let x1 = this.props.values.x1 + (types[this.props.values.type].width+10)/40
+    let x1 = this.props.values.x1 + (types[this.props.values.type].width + 10) / 40
     let x2 = this.props.values.x2
     let y1 = this.props.values.y1
     let y2 = this.props.values.y2
-    let xa = (x1) + (x2-x1)/2 * 0.8
+    let xa = (x1) + (x2 - x1) / 2 * 0.8
     let ya = (this.props.values.y1) - (y2 - y1) * 0.01
     let xb = (x2) - (x2 - x1) * 0.4
     let yb = (this.props.values.y2) - (y2 - y1) * 0.5
 
     return (
       <svg>
-          <circle cx={`${conv(x1)}`} cy={`${conv(y1)}`}  r="4" stroke="black" stroke-width="1" fill="green" />
-         <circle cx={`${conv(xa)}`} cy={`${conv(ya)}`}  r="4" stroke="black" stroke-width="1" fill="red" />
-         <circle cx={`${conv(xb)}`} cy={`${conv(yb)}`}  r="4" stroke="black" stroke-width="1" fill="blue" />
-        <path  style={{ }} d={`M  ${conv(x1)},${conv(y1)}  Q ${conv(xa)},${conv(ya)} ${conv(xb)},${conv(yb)} T ${conv(x2)} ${conv(y2)}`}
+        <path style={{}} d={`M  ${conv(x1)},${conv(y1)}  Q ${conv(xa)},${conv(ya)} ${conv(xb)},${conv(yb)} T ${conv(x2)} ${conv(y2)}`}
           fill="none" stroke="white" strokeWidth="1" />
       </svg>
 
@@ -164,28 +162,52 @@ class Curve extends React.Component {
 }
 
 /*
+          <circle cx={`${conv(x1)}`} cy={`${conv(y1)}`}  r="4" stroke="black" stroke-width="1" fill="green" />
+         <circle cx={`${conv(xa)}`} cy={`${conv(ya)}`}  r="4" stroke="black" stroke-width="1" fill="red" />
+         <circle cx={`${conv(xb)}`} cy={`${conv(yb)}`}  r="4" stroke="black" stroke-width="1" fill="blue" />
  <circle style={{}}cx={`${conv(x1)+2}`} cy={`${conv(y1)}`}  r="8" stroke="white" stroke-width="2" fill="#b4a3d1" />
 
          */
-
-
-export default App;
-
-//background-image: linear-gradient(#301e78,#060014);
-
-/*
-
-class oldNode extends React.Component {
-  render() {
-    var x = this.props.node.x * 40 - 20
-    var y = this.props.node.y * 40 - 20
-    console.log(x, y)
-    return (
-      <g transform={`translate(${x},${y})`}>
-        <rect width="40" height="40"
-          style={{position: "absolute",  fill: "white", stroke: "pink", strokeWidth: 2, fillOpacity: 1, strokeOpacity: 0.9 }} />
-      </g>
-    )
-  }
+function getWidth() {
+  return Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  )
 }
-*/
+
+function getHeight() {
+  return Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.offsetHeight,
+    document.documentElement.clientHeight
+  );
+}
+
+
+
+
+  //background-image: linear-gradient(#301e78,#060014);
+
+  /*
+  
+  class oldNode extends React.Component {
+    render() {
+      var x = this.props.node.x * 40 - 20
+      var y = this.props.node.y * 40 - 20
+      console.log(x, y)
+      return (
+        <g transform={`translate(${x},${y})`}>
+          <rect width="40" height="40"
+            style={{position: "absolute",  fill: "white", stroke: "pink", strokeWidth: 2, fillOpacity: 1, strokeOpacity: 0.9 }} />
+        </g>
+      )
+    }
+  }
+  */
+
+  export default App;
