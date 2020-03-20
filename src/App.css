@@ -2,9 +2,31 @@
   text-align: center;
 }
 
-.center-screen {
+.container {
+  position: relative;
+  border: solid 1px red;
+  height: 256px;
+  width: 256px;
+  overflow: auto;
+  
+  float: left;
+  margin-right: 16px;
+}
 
+.inner {
+  position: relative;
+  height: auto;
+}
 
+.full-height {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 128px;
+  bottom: 0;
+  height: 100%;
+  
+  background: blue;
 }
 
 .centered{
@@ -34,11 +56,12 @@
 }
 
 .mainContainer{
-  
   background-size: 40px 40px;
   background-image:
-      linear-gradient(to right, grey 1px, transparent 1px),
-      linear-gradient(to bottom, grey 1px, transparent 1px);
+
+      linear-gradient(to right, #423b6b 1px, transparent 1px),
+      linear-gradient(to bottom, #423b6b 1px, transparent 1px),
+      linear-gradient(#2c2553, #2c2553);
   
 }
 

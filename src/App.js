@@ -9,8 +9,10 @@ import { GridTransition } from "./Components/GridTransition"
 export const add = (x, y) => x + y;
 export const total = (shipping, subTotal) => "$" + (add(shipping, subTotal)).toString();
 
-const screenWidth = getWidth() - 20
-const screenHeight = getHeight() - 150
+//const screenWidth = getWidth() - 20
+const screenHeight = getHeight()
+
+const screenWidth = getWidth();
 
 class App extends React.Component {
   constructor(props) {
@@ -22,12 +24,29 @@ class App extends React.Component {
 
 
   render() {
-
+    console.log(screenWidth, screenHeight)
 
     return (
-      <div>
-          <PageHeader />
-          <Graph/>
+      <div style={{      
+        display: "flex",
+      justifyContent: "center",
+      width: "100%",
+      overflow:"auto"
+      }}>
+    
+      <div className="mainContainer" style={{
+         overflow:"hidden", 
+         height:screenHeight, 
+         width:screenWidth, 
+         position:"relative",
+         boxShadow: "5px 5px 5px 0 #060017, 5px 5px 5px #504080",
+         }}>
+       
+        <PageHeader screenWidth={screenWidth} />
+        <GridTransition  />
+        <Graph screenWidth={screenWidth} screenHeight={screenHeight} />
+       
+      </div>
       </div>
 
     );
@@ -41,23 +60,37 @@ class App extends React.Component {
 */
 
 function getWidth() {
-  return Math.max(
+  let width = Math.max(
     document.body.scrollWidth,
     document.documentElement.scrollWidth,
     document.body.offsetWidth,
     document.documentElement.offsetWidth,
     document.documentElement.clientWidth
   )
+  if(width<1000){
+    return 1000
+  }
+  if(width>1500){
+    return 1500
+  }
+  return width
 }
 
 function getHeight() {
-  return Math.max(
+  let height = Math.max(
     document.body.scrollHeight,
     document.documentElement.scrollHeight,
     document.body.offsetHeight,
     document.documentElement.offsetHeight,
     document.documentElement.clientHeight
   );
+  if(height<640){
+    return 640
+  }
+  if(height>800){
+    return 800
+  }
+  return height
 }
 
 

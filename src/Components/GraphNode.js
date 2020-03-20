@@ -29,7 +29,7 @@ class GraphNode extends React.Component {
   
       var imageDisplay = [];
       var images = this.props.node.images;
-      if (images != undefined) {
+      if (images !== undefined) {
         images.forEach((url, index) => {
           const imageStyle = {
             width: 50,
@@ -47,7 +47,7 @@ class GraphNode extends React.Component {
       }
   
       return (
-        <div>
+        <div id={"Node_"+this.props.node.key}>
           <div style={style}>
             <p style={fontStyle}>
               {this.props.node.text}

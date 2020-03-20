@@ -2,11 +2,11 @@ import React from 'react';
 import '../App.css';
 
 function style(x, y, color){
-    if(color=="rgb(0,0,0,0)"){
+    if(color==="rgb(0,0,0,0)"){
         var border = "0px"
     }
     else {
-        var border = "1px #2A253A solid";
+        border = "1px #2A253A solid";
     }
     return {
         position: "absolute",
@@ -32,26 +32,24 @@ class GridTransition extends React.Component {
 
     componentDidMount() {
         var grid = []
-        for (var x = 0; x < 36; x++) {
-            for (var y = 0; y < 16; y++) {
+        var altered = []
+        for (var x = 0; x < 38; x++) {
+            for (var y = 0; y < 17; y++) {
                 grid.push({ x: x, y: y, color:"rgb(0,0,0,0)"})
+                altered.push(altered.length);
             }
-        }
-        var altered = [];
-        for (var i = 0; i < grid.length; i++){
-            altered.push(i);
         }
         this.setState({ grid: grid, altered:altered })
     }
 
     handleClick = () => {
-        if (this.state.trigger == 0) {
+        if (this.state.trigger === 0) {
             this.timerID = setInterval(
                 () => this.tick(),
                 0.05
             );
         }
-    }
+    }   
 
     alterTile(new_grid, alteredList){
         if(alteredList.length>0){
@@ -64,15 +62,12 @@ class GridTransition extends React.Component {
 
     tick() {
         if(this.state.trigger < this.state.grid.length){
-            
-            if(this.state.altered.length!=0){
+            if(this.state.altered.length!==0){
                 var new_grid = [...this.state.grid]
                 var alteredList = [...this.state.altered]
-                this.alterTile(new_grid, alteredList)
-                this.alterTile(new_grid, alteredList)
-                this.alterTile(new_grid, alteredList)
-                this.alterTile(new_grid, alteredList)
-
+                for(var i=0; i < 10; i++){
+                    this.alterTile(new_grid, alteredList)
+                }
                 this.setState({
                     grid: new_grid,
                     altered: alteredList
@@ -91,9 +86,10 @@ class GridTransition extends React.Component {
 
     render() {
         return (
-            <div style={{ zIndex: 1, position: "absolute", width:this.props.screenWidth, height:this.props.screenHeight}}>
+            <div style={{position:"absolute"}}>
+   
                 
-                <button style={{position: "absolute", zIndex:2}} onClick={this.handleClick}>
+                <button style={{position: "absolute", zIndex:2, left:200, top:200}} onClick={this.handleClick}>
                     {this.state.trigger}
                 </button>
 
@@ -102,7 +98,7 @@ class GridTransition extends React.Component {
                         <div style={style(square.x, square.y, square.color)} />
                     );
                 })}
-            </div>
+             </div>
         );
     }
 }
