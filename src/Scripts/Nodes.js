@@ -1,3 +1,37 @@
+const types = {
+  "A": {
+    width: 120,
+    height: 120,
+    color: "#17084f",
+    style: {
+      display: "block",
+      color: "white",
+      fontSize: 20,
+      fontFamily: "Lucida Console"
+    }
+  },
+  "B": {
+    width: 90,
+    height: 90,
+    color: "#604f9e",
+    style: {
+      display: "block",
+      color: "#bfbfb0",
+      fontSize: 14,
+    }
+  },
+  "C": {
+    width: 120,
+    height: 60,
+    color: "#ccc5b1",
+    style: {
+      display: "block",
+      color: "#1e0a40",
+      fontSize: 13,
+    }
+  }
+}
+
 var nodes = []
 var edges = []
 var lines = []
@@ -39,4 +73,4 @@ function graphObjects(){
     return [nodes, edges, lines];
 }
 
-export {graphObjects, getLines}
+export {graphObjects, getLines, types}
