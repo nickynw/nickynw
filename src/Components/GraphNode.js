@@ -37,7 +37,7 @@ class GraphNode extends React.Component {
             display: "flex",
             position: "absolute",
             marginLeft: x + 150 + 60 * index,
-            marginTop: y + 10,
+            marginTop: y,
             borderRadius: 50,
           }
           let imageurl = "/images/" + url + ".png"

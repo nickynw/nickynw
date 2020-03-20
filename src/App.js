@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import {GraphLine} from './Components/GraphLine' 
-import { GraphNode } from './Components/GraphNode'
+
 import { PageHeader } from './Components/PageHeader'
-import { graphObjects } from "./Scripts/Nodes"
+import { Graph } from './Components/Graph'
+import { GridTransition } from "./Components/GridTransition"
+
 
 export const add = (x, y) => x + y;
 export const total = (shipping, subTotal) => "$" + (add(shipping, subTotal)).toString();
@@ -11,34 +12,33 @@ export const total = (shipping, subTotal) => "$" + (add(shipping, subTotal)).toS
 const screenWidth = getWidth() - 20
 const screenHeight = getHeight() - 150
 
-function App() {
-
-  var [nodes, edges, lines] = graphObjects()
-  var lineDisplay = [];
-  var nodeDisplay = [];
-
-  /*For each node in list of nodes from graphObjects script, produce a GraphNode JSX component to display.*/
-  for (var key in nodes) {
-    nodeDisplay.push(<GraphNode node={nodes[key]} />)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      transition: false
+    };
   }
-  /*And again, for each line (x1,y1, x2,y2) draw a bezier graph curve GraphLine JSX component to display.*/
-  lines.forEach((a) => lineDisplay.push(<GraphLine values={a} />));
-  return (
 
-    <div style={{}} >
 
-      <PageHeader />
+  render() {
 
-      <div style={{ position: "absolute", marginLeft: 120, width: screenWidth - 120, height: screenHeight }} >
-        {nodeDisplay}
-        <svg style={{ zIndex: -1, position: "absolute", width: screenWidth - 120, height: screenHeight }}>
-          {lineDisplay}
-        </svg>
+
+    return (
+      <div>
+          <PageHeader />
+          <Graph/>
       </div>
 
-    </div>
-  );
+    );
+  }
 }
+/*
+      </div>
+        <div style={{position:"absolute", overflow:"inherit", width: screenWidth, height: screenHeight }}>
+          <GridTransition screenWidth={screenWidth} screenHeight={screenHeight}/>
+          </div>
+*/
 
 function getWidth() {
   return Math.max(
@@ -61,4 +61,4 @@ function getHeight() {
 }
 
 
-  export default App;
+export default App;
