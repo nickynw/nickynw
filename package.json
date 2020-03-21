@@ -12,6 +12,7 @@
     "react-draggable": "^4.2.0",
     "react-indiana-drag-scroll": "^1.6.0",
     "react-overflow-scrolling": "^1.0.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },
   "scripts": {

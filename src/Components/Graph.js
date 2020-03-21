@@ -6,8 +6,6 @@ import { GraphNode } from '../Components/GraphNode'
 
 class Graph extends React.Component {
 
-
-
     render() {
         var [nodes, lines] = graphObjects()
         var lineDisplay = [];
