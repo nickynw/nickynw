@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.0",
+    "react-delay-link": "^1.1.4",
     "react-dom": "^16.13.0",
     "react-draggable": "^4.2.0",
     "react-indiana-drag-scroll": "^1.6.0",
