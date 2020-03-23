@@ -7,6 +7,7 @@ import { GridTransition } from "./Components/GridTransition"
 import { NavLink, Switch, Route } from 'react-router-dom';
 import {Home} from "./Views/Home";
 import {Project} from "./Views/Project";
+import {Error404} from './Views/Error404'
 import {screenHeight, screenWidth} from './Scripts/Global'
 
 
@@ -20,6 +21,7 @@ const Main = () => (
   <Switch>
     <Route exact path='/' component={Home}></Route>
     <Route path='/project' component={Project}></Route>
+    <Route path='/' component={Error404}></Route>
   </Switch>
 );
 
