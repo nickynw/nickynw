@@ -4,6 +4,8 @@ const imageSize = 50;
 const screenHeight = getHeight()
 const screenWidth = getWidth();
 
+
+
 function getWidth() {
     let width = Math.max(
       document.body.scrollWidth,
@@ -11,9 +13,9 @@ function getWidth() {
       document.body.offsetWidth,
       document.documentElement.offsetWidth,
       document.documentElement.clientWidth
-    )
-    if (width < 1000) {
-      return 1000
+    ) - 17 //scrollbarwidth -> change to calculate it at some point
+    if (width < 1200) {
+      return 1200
     }
     if (width > 1500) {
       return 1500

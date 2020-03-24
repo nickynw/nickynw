@@ -7,26 +7,54 @@ import { GridTransition } from "../Components/GridTransition"
 import { NavLink, Switch, Route } from 'react-router-dom';
 import { screenHeight, screenWidth } from '../Scripts/Global'
 import DelayLink from 'react-delay-link';
+import { graphObjects } from "../Scripts/Nodes"
+import { GraphLine } from '../Components/GraphLine'
+import { GraphNode } from '../Components/GraphNode'
 
 class Home extends React.Component {
-    action = () => {
-        this.props.history.push('/project')
+    constructor(props){
+        super(props)
+        this.state = {
+            pushURL: ""
+        }
     }
 
+    handleClick = (url) => {
+        this.setState({
+            pushURL: url
+        });
+    }
+    
+    /*this.state.pushURL is passed to graphnodes, which can change it to a new url, 
+    gridtransition looks for a change in this.state.pushURL and triggers a transition to move there*/
     render() {
+        var nodes = graphObjects()
+        var nodeDisplay = [];
+        for (var key in nodes) {
+            nodeDisplay.push(<GraphNode handleClick={this.handleClick} id={"Node_" + key} key={key} node={nodes[key]} />)
+        }
+
         return (
-            <div className="mainContainer" style={{
+            <div style={{
                 marginTop: 120,
                 overflow: "hidden",
-                overflowX: " hidden",
                 width: screenWidth,
                 height: "100%",
                 boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
             }}> 
-                <GridTransition history={this.props.history} screenWidth={screenWidth} screenHeight={screenHeight} />
-                <Graph screenWidth={screenWidth} screenHeight={screenHeight} />
-               
 
+            <GridTransition pushURL={this.state.pushURL} history={this.props.history} />
+            
+            <div style={{
+                    zIndex: 1,
+                    width: screenWidth,
+                    height: screenHeight,
+                    position: "absolute",
+                }}>
+                    {nodeDisplay}
+            </div>
+       
+               
             </div>)
     }
 }

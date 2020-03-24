@@ -1,9 +1,31 @@
 import React from 'react';
 import '../App.css';
 import { tileSize } from '../Scripts/Global'
+import { screenHeight, screenWidth } from '../Scripts/Global'
 
+//Changes one tile's zValue at random from remaining unchanged tiles
+function alterTile(grid, alteredList, opacity) {
+    if (alteredList.length > 0) {
+        var randomIndex = getRandom(0, alteredList.length - 1)
+        var indexToChange = alteredList[randomIndex];
+        grid[indexToChange].o = opacity;
+        alteredList.splice(randomIndex, 1);
+    }
+}
 
-
+const style = (x, y, o) => ({
+    position: "absolute",
+    width: tileSize,
+    height: tileSize,
+    left: x * tileSize,
+    top: y * tileSize,
+    background: "rgb(28,24,52,1)",
+    opacity: o,
+    border: "1px #2A253A solid",
+    transition: "0.2s linear",
+    zIndex: 3,
+    pointerEvents:"none"
+})
 
 class GridTransition extends React.Component {
     constructor(props) {
@@ -12,51 +34,48 @@ class GridTransition extends React.Component {
             trigger: 0,
             grid: [],
             altered: [],
-            condition: ""
         };
     }
 
     //Initialises the grid and performs entrance transition
     componentDidMount() {
         var grid = []
-        var xSize = (Math.round(this.props.screenWidth / tileSize)) + 1
-        var ySize = (Math.round(this.props.screenHeight / tileSize)) + 1
+        var xSize = (Math.round(screenWidth / tileSize)) +1
+        var ySize = (Math.round(screenHeight / tileSize)) +1
         for (var x = 0; x < xSize; x++) {
             for (var y = 0; y < ySize; y++) {
-                grid.push({ x: x, y: y, z: 3 })
+                grid.push({ x: x, y: y, o: 1 })
             }
         }
         var altered = [...Array(grid.length).keys()]
         this.setState({ grid: grid, altered: altered })
-        this.triggerTransition(-1)
+        this.triggerTransition(0)
     }
 
-    triggerTransition(z, onExit = ""){
-        this.timerID = setInterval(
-            () => this.tick(z, onExit),
-            0.05
-        );
-    }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.pushURL !== prevProps.pushURL) {
+          this.start()
+        }
+     }
 
-    handleClick = () => {
+    start = () => {
         if (this.state.trigger === 0) {
             var altered = [...Array(this.state.grid.length).keys()]
             this.setState({ altered: altered })
-            this.triggerTransition(3, '/project')
+            this.triggerTransition(1, "/project/"+this.props.pushURL)
         }   
     }
 
-    //Changes one tile's zValue
-    alterTile(new_grid, alteredList, zValue) {
-        if (alteredList.length > 0) {
-            var randomIndex = getRandom(0, alteredList.length - 1)
-            var indexToChange = alteredList[randomIndex];
-            new_grid[indexToChange].z = zValue;
-            alteredList.splice(randomIndex, 1);
-        }
+    //o = opacity, onExit = push to this location when transition finishes ( or don't if left blank)
+    triggerTransition(opacity, onExit = ""){
+        this.timerID = setInterval(
+            () => this.tick(opacity, onExit),
+            0.04
+        );
     }
 
-    tick(zValue, onExit) {
+
+    tick(opacity, onExit) {
         //If there are no more tiles left to change
         if (this.state.altered.length == 0) {
             this.setState({ trigger: 0 })
@@ -66,14 +85,10 @@ class GridTransition extends React.Component {
             }
         } else {
             //Set state grid to new grid with tiles altered 10 at a time per interval
-            var new_grid = [...this.state.grid]
-            var alteredList = [...this.state.altered]
-            for (var i = 0; i < 10; i++) {
-                this.alterTile(new_grid, alteredList, zValue)
+            for (var i = 0; i < 20; i++) {
+                alterTile(this.state.grid, this.state.altered, opacity)
             }
             this.setState({
-                grid: new_grid,
-                altered: alteredList,
                 trigger: this.state.trigger + 10,
             });
         }
@@ -84,27 +99,11 @@ class GridTransition extends React.Component {
     }
 
     render() {
-        const style = (x, y, z) => ({
-            position: "absolute",
-            width: tileSize,
-            height: tileSize,
-            left: x * tileSize,
-            top: y * tileSize,
-            background: "rgb(28,24,52,1)",
-            zIndex: z,
-            border: "1px #2A253A solid"
-        })
-
         return (
             <div style={{ position: "absolute" }}>
-
-                <button style={{ position: "absolute", zIndex: 4, left: 200, top: 200 }} onClick={this.handleClick}>
-                    {this.state.trigger}
-                </button>
-
                 {this.state.grid.map(function (tile) {
                     return (
-                        <div style={style(tile.x, tile.y, tile.z)} />
+                        <div style={style(tile.x, tile.y, tile.o)} />
                     );
                 })}
             </div>
@@ -117,3 +116,9 @@ function getRandom(min, max) {
 }
 
 export { GridTransition }
+
+/*
+                <button style={{ position: "absolute", zIndex: 4, left: 200, top: 200 }} onClick={this.start}>
+                  
+                </button>
+                */

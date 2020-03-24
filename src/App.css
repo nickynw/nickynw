@@ -65,12 +65,7 @@
 
 
 .headerContainer{
-  background-size: 40px 40px;
-  background-image:
-
-      linear-gradient(to right, #2d2752 1px, transparent 1px),
-      linear-gradient(to bottom, #2d2752 1px, transparent 1px),
-      linear-gradient(rgb(15,10,15,0.6), rgb(15,10,15,0.6));
+  background: rgb(15,10,15,0.6)
   
 }
 

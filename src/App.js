@@ -34,16 +34,20 @@ class App extends React.Component {
   }
   
   render() {
+
+
+    
     return (
-    <div style={{
+    <div className="mainContainer" 
+    style={{
             display: "flex",
             justifyContent: "center",
             width: screenWidth,
             overflow: "hidden",
             position:"absolute",
             height: screenHeight,
-            marginLeft: "50"
       }}>
+ 
       <PageHeader screenWidth={screenWidth} />
       <Main />
     </div>

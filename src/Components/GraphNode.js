@@ -2,6 +2,10 @@ import React from 'react';
 import '../App.css';
 import { types } from '../Scripts/Nodes'
 import { tileSize, imageSize } from '../Scripts/Global'
+import { GraphLine } from '../Components/GraphLine'
+import {CircleImageList} from '../Components/CircleImageList'
+
+
 
 class GraphNode extends React.Component {
   constructor(props) {
@@ -10,6 +14,8 @@ class GraphNode extends React.Component {
       isHover: false
     };
   }
+
+  onMouseClick = () => this.props.handleClick(this.props.node.url)
 
   onMouseEnter = () => this.setState({ isHover: true })
 
@@ -34,7 +40,7 @@ class GraphNode extends React.Component {
       alignItems: "center",
       justifyContent: "center",
       display: "flex",
-      padding: 5,
+      transition: "1s",
       cursor: 'pointer'
     }
 
@@ -48,34 +54,27 @@ class GraphNode extends React.Component {
 
     const fontStyle = types[this.props.node.type].style;
 
-    var imageDisplay = [];
-    var images = this.props.node.images;
-    var imagesOffset = 220;
-    if (images !== undefined) {
-      images.forEach((url, index) => {
-        const imageStyle = {
-          width: imageSize,
-          height: imageSize,
-          display: "flex",
-          position: "absolute",
-          marginLeft: x + imagesOffset + (imageSize + 10) * index,
-          marginTop: y + 12,
-          borderRadius: 50,
-        }
-        let imageurl = "/images/" + url + ".png"
-        let imageNode = <img style={imageStyle} src={imageurl} ></img>
-        imageDisplay.push(imageNode)
-      })
-    }
 
     return (
       <div id={"Node_" + this.props.node.key} >
+
         <p style={dateStyle}>{this.props.node.date}</p>
-        <div style={style} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+
+        <div style={style} onMouseEnter={this.onMouseEnter} onClick={this.onMouseClick} onMouseLeave={this.onMouseLeave}>
           <p style={fontStyle}>
             {this.props.node.text}
           </p>
-        </div> {imageDisplay}
+          
+        </div>
+
+        {this.props.node.images != undefined &&
+          <CircleImageList images={this.props.node.images} x={this.props.node.x} y={this.props.node.y} />
+        }
+
+        {this.props.node.parenttype != undefined &&
+          <GraphLine values={{ type: this.props.node.parenttype, x1: this.props.node.parentx, y1: this.props.node.parenty, x2: this.props.node.x, y2: this.props.node.y }} />
+        }
+
       </div>
     )
   }
