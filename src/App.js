@@ -49,6 +49,9 @@ class App extends React.Component {
       }}>
  
       <PageHeader screenWidth={screenWidth} />
+
+      <p style={{position:"absolute", marginTop:125, color:"grey"}}>Please select a project from the chart</p>
+      
       <Main />
     </div>
     );

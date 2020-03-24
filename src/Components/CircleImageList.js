@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { types } from '../Scripts/Nodes'
-import { tileSize, imageSize } from '../Scripts/Global'
+import { tileSize } from '../Scripts/Global'
 import { GraphLine } from '../Components/GraphLine'
 
 class CircleImageList extends React.Component {
@@ -10,17 +10,22 @@ class CircleImageList extends React.Component {
 
 
         var imageDisplay = [];
-        var images = this.props.images;
-        var imagesOffset = 220;
+        var imageSize = 50;
+        var images = this.props.node.images;
+        var imageSeperation = (this.props.hoverState) ? 13: 8;
+        var imagesOffset = types[this.props.node.type].width + 90 + imageSeperation;
+ 
         images.forEach((url, index) => {
             const imageStyle = {
                 width: imageSize,   
                 height: imageSize,
                 display: "flex",
                 position: "absolute",
-                marginLeft: (this.props.x * tileSize )+ imagesOffset + (imageSize + 10) * index,
-                marginTop: (this.props.y * tileSize ) - imageSize/2,
+                marginLeft: (this.props.node.x * tileSize ) + imagesOffset + (imageSize + imageSeperation) * index,
+                marginTop: (this.props.node.y * tileSize ) - imageSize/2,
                 borderRadius: 50,
+                transition: "opacity 0.4s ease, margin 0.4s ease",
+                opacity: (this.props.hoverState) ? 1:0.7
             }
             let imageurl = "/images/" + url + ".png"
             let imageNode = <img style={imageStyle} src={imageurl} ></img>

@@ -8,8 +8,7 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 import { screenHeight, screenWidth } from '../Scripts/Global'
 import DelayLink from 'react-delay-link';
 import { graphObjects } from "../Scripts/Nodes"
-import { GraphLine } from '../Components/GraphLine'
-import { GraphNode } from '../Components/GraphNode'
+import { GraphObject } from '../Components/GraphObject'
 
 class Home extends React.Component {
     constructor(props){
@@ -31,7 +30,7 @@ class Home extends React.Component {
         var nodes = graphObjects()
         var nodeDisplay = [];
         for (var key in nodes) {
-            nodeDisplay.push(<GraphNode handleClick={this.handleClick} id={"Node_" + key} key={key} node={nodes[key]} />)
+            nodeDisplay.push(<GraphObject handleClick={this.handleClick} id={"Node_" + key} key={key} node={nodes[key]} />)
         }
 
         return (

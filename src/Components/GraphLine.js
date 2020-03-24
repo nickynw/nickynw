@@ -1,13 +1,14 @@
 import React from 'react';
 import '../App.css';
-import {types} from '../Scripts/Nodes'
-import {tileSize} from '../Scripts/Global'
+import { types } from '../Scripts/Nodes'
+import { tileSize } from '../Scripts/Global'
 
 const conv = (n) => n * tileSize
 
 class GraphLine extends React.Component {
   render() {
-    let x1 = this.props.values.x1 + types[this.props.values.type].width/ tileSize
+    //These values were decided to form the ideal Bezier Curve for the current design
+    let x1 = this.props.values.x1 + types[this.props.values.type].width / tileSize
     let x2 = this.props.values.x2
     let y1 = this.props.values.y1
     let y2 = this.props.values.y2
@@ -15,25 +16,45 @@ class GraphLine extends React.Component {
     let ya = (this.props.values.y1) - (y2 - y1) * 0.01
     let xb = (x2) - (x2 - x1) * 0.4
     let yb = (this.props.values.y2) - (y2 - y1) * 0.5
-    console.log(types[this.props.values.type].width / tileSize)
+
+
+    var strokeWidth = (this.props.hoverState) ? "2" : "1"
+    var strokeColour = (this.props.hoverState) ? "white" : "grey"
+
+    var dateBoxWidth = 60
+    var dateBoxHeight = 20
+    var secondLineLength = 20
 
     return (
-      <svg style={{
-        zIndex: -1,
-        position: "absolute",
-        width: 1500,
-        height: 1000
-      }}>
-        <path style={{}} d={`M  ${conv(x1)},${conv(y1)}  Q ${conv(xa)},${conv(ya)} ${conv(xb)},${conv(yb)} T ${conv(x2)} ${conv(y2)}`}
-          fill="none" stroke="white" strokeWidth="1" />
-        <rect x={conv(x2)+1} y={conv(y2)-10} width="60" height="20"
+      <svg
+        style={{
+          zIndex: -1,
+          position: "absolute",
+          width: 1500,
+          height: 1000,
+        }}>
+
+        <path
+          style={{ transition: " stroke 1s ease" }}
+          d={`M  ${conv(x1)},${conv(y1)}  Q ${conv(xa)},${conv(ya)} ${conv(xb)},${conv(yb)} T ${conv(x2)} ${conv(y2)}`}
+          fill="none"
+          stroke={strokeColour}
+          strokeWidth={strokeWidth} />
+
+        <rect x={conv(x2) + 1} y={conv(y2) - dateBoxHeight/2} width={dateBoxWidth} height={dateBoxHeight}
           style={{
-            fill:"none",
-            stroke:"rgb(255,255,255,1)",
-            strokeWidth:1,}} />
-          <line x1={conv(x2)+60} y1={conv(y2)} x2={conv(x2)+80} y2={conv(y2)} 
-          style={{stroke:"rgb(255,255,255)",
-          strokeWidth:1}} />
+            fill: "none",
+            stroke: strokeColour,
+            strokeWidth: strokeWidth,
+            transition: " stroke 1s ease"
+          }} />
+
+        <line x1={conv(x2) + dateBoxWidth} y1={conv(y2)} x2={conv(x2) + dateBoxWidth+secondLineLength} y2={conv(y2)}
+          style={{
+            stroke: strokeColour,
+            strokeWidth: strokeWidth,
+            transition: " stroke 1s ease"
+          }} />
 
       </svg>
 
@@ -41,7 +62,7 @@ class GraphLine extends React.Component {
   }
 }
 
-export {GraphLine}
+export { GraphLine }
 
 /*
           <circle cx={`${conv(x1)}`} cy={`${conv(y1)}`}  r="4" stroke="black" stroke-width="1" fill="green" />
