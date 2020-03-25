@@ -2,9 +2,7 @@ import React from 'react';
 import './App.css';
 
 import { PageHeader } from './Components/PageHeader'
-import { Graph } from './Components/Graph'
-import { GridTransition } from "./Components/GridTransition"
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import {Home} from "./Views/Home";
 import {Project} from "./Views/Project";
 import {Error404} from './Views/Error404'
@@ -20,7 +18,7 @@ export const total = (shipping, subTotal) => "$" + (add(shipping, subTotal)).toS
 const Main = () => (
   <Switch>
     <Route exact path='/' component={Home}></Route>
-    <Route path='/project' component={Project}></Route>
+    <Route path='/project/:id' component={Project}></Route>
     <Route path='/' component={Error404}></Route>
   </Switch>
 );
@@ -34,9 +32,6 @@ class App extends React.Component {
   }
   
   render() {
-
-
-    
     return (
     <div className="mainContainer" 
     style={{
@@ -50,7 +45,7 @@ class App extends React.Component {
  
       <PageHeader screenWidth={screenWidth} />
 
-      <p style={{position:"absolute", marginTop:125, color:"grey"}}>Please select a project from the chart</p>
+     
       
       <Main />
     </div>
@@ -58,15 +53,4 @@ class App extends React.Component {
   }
 }
 
-
-
 export default App;
-
-/*
- 
-
-
-
-      </div>
-
-      */

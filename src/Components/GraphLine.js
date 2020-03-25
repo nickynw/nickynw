@@ -65,21 +65,9 @@ class GraphLine extends React.Component {
 export { GraphLine }
 
 /*
-          <circle cx={`${conv(x1)}`} cy={`${conv(y1)}`}  r="4" stroke="black" stroke-width="1" fill="green" />
-          <circle cx={`${conv(x2)}`} cy={`${conv(y2)}`}  r="4" stroke="black" stroke-width="1" fill="yellow" />
-
-           <polyline points={[conv(x2),conv(y2),conv(x2)+10,conv(y2), conv(x2)+10,conv(y2)+20, conv(x2)+80,conv(y2)+20, conv(x2)+80,conv(y2)]}
-  style={{fill:"none", stroke:"white", strokeWidth:1}} />
-
-
-  <polyline points=`
-  ${conv(x2)},${conv(y2)} ${conv(x2)+20},${conv(y2)} ${conv(x2)+20},${conv(y2)+20} ${conv(x2)+80},${conv(y2)+20} ${conv(x2)+80},${conv(y2)}`
-  style={{fill:"none", stroke:"white", strokeWidth:1}} />
-
-
-
-For drawin bezier quadratic points to determine curve. (Just plug in next to path to see)
-
+For drawing bezier quadratic points to determine curve/line positions. (Just plug in next to path to see)
+<circle cx={`${conv(x1)}`} cy={`${conv(y1)}`}  r="4" stroke="black" stroke-width="1" fill="green" />
+<circle cx={`${conv(x2)}`} cy={`${conv(y2)}`}  r="4" stroke="black" stroke-width="1" fill="yellow" />
 <circle cx={`${conv(xa)}`} cy={`${conv(ya)}`}  r="4" stroke="black" stroke-width="1" fill="red" />
 <circle cx={`${conv(xb)}`} cy={`${conv(yb)}`}  r="4" stroke="black" stroke-width="1" fill="blue" />
 <circle style={{}}cx={`${conv(x1)+2}`} cy={`${conv(y1)}`}  r="8" stroke="white" stroke-width="2" fill="#b4a3d1" />

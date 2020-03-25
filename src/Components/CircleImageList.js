@@ -2,13 +2,10 @@ import React from 'react';
 import '../App.css';
 import { types } from '../Scripts/Nodes'
 import { tileSize } from '../Scripts/Global'
-import { GraphLine } from '../Components/GraphLine'
 
 class CircleImageList extends React.Component {
 
     render() {
-
-
         var imageDisplay = [];
         var imageSize = 50;
         var images = this.props.node.images;
@@ -31,7 +28,6 @@ class CircleImageList extends React.Component {
             let imageNode = <img style={imageStyle} src={imageurl} ></img>
             imageDisplay.push(imageNode)
         })
-
 
         return (
             <div style={{position:"relative"}}> {imageDisplay} </div>

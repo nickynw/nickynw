@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { types } from '../Scripts/Nodes'
-import { tileSize, imageSize } from '../Scripts/Global'
+import { tileSize } from '../Scripts/Global'
 
 
 

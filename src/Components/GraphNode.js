@@ -1,14 +1,15 @@
 import React from 'react';
 import '../App.css';
 import { types } from '../Scripts/Nodes'
-import { tileSize, imageSize } from '../Scripts/Global'
-
-
+import { tileSize } from '../Scripts/Global'
 
 class GraphNode extends React.Component {
 
-
-  onMouseClick = () => this.props.handleClick(this.props.node.url)
+  onMouseClick = () => {
+    if(this.props.node.url!=undefined){
+      this.props.handleClick("/project/"+this.props.node.url)
+    }
+  }
 
   onMouseEnter = () => this.props.setHoverState(true)
 

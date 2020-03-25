@@ -50,9 +50,9 @@ function PageHeader(props) {
         width: "37%",
       }}>
         <p style={{ color: "#b7bcc4", fontSize: 13 }}>
-          Hello, my name is Nick Wilson. This site presents my personal projects together in one place for you to explore.
-         <span className="highlight"> <u>I am currently looking for a job as a junior software engineer (as of March 2020).</u> </span>
-         Also, please feel free to contact me about purchasing any available art pieces, or for comissioning new projects (art or software). Cheers, Nick.
+          Hello, my name is Nick Wilson. I am a (BSc) Neuroscience and (MSc) Computer Science graduate. This site presents my personal projects together in one place for you to explore.
+         <span className="highlight"> <u>I am currently looking for a job as a junior software engineer in London (as of March 2020).</u> </span>
+         Also, please feel free to contact me about purchasing any available art pieces, or for commissioning new projects (art or software). Cheers, Nick.
           </p>
       </div>
 

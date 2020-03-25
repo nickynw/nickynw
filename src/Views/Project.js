@@ -4,27 +4,111 @@ import '../App.css';
 import { PageHeader } from '../Components/PageHeader'
 import { Graph } from '../Components/Graph'
 import { GridTransition } from "../Components/GridTransition"
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { screenHeight, screenWidth } from '../Scripts/Global'
+import { createProjects } from '../Scripts/CreateProjects'
+import { VerticalThumbnails } from "../Components/VerticalThumbnails"
+import { SectionArrow } from '../Components/SectionArrow'
+import { Missing } from './Missing'
+
+const mainPictureSize = 400;
+
+class Project extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.match.params.id,
+            projects: createProjects(),
+            index: 0
+        };
+    }
+
+    pushHome = () => {
+        this.setState({
+            pushURL: "/"
+        });
+    }
+
+    shiftIndex = (newIndex) => {
+        this.setState({ index: newIndex })
+    }
+
+    render() {
+        var projectButtonStyle = {
+            width: 150,
+            height: 30,
+            display:"flex",
+            justifyContent:"center",
+            borderRadius: 10,
+            border: "2px solid grey",
+            background: "grey",
+            transition:"opacity 0.3s ease",
+            margin: 5,
+        }
+
+        if (this.state.projects[this.state.id] == undefined) {
+            return (<Missing />)
+        }
+        let imageurl = "/images/" + this.state.projects[this.state.id][this.state.index].image + ".png"
+        return (
+            <div className="mainContainer" style={{
+                marginTop: 120,
+                overflow: "hidden",
+                overflowX: " hidden",
+                width: screenWidth,
+                height: "100%",
+                boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
+            }}>
 
 
-class Project extends React.Component{
-  render(){
-    return(
-    <div className="mainContainer" style={{
-        marginTop: 120,
-        overflow: "hidden",
-        overflowX: " hidden",
-        width: screenWidth,
-        height: "100%",
-        boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
-    }}> 
-        <GridTransition history={this.props.history} screenWidth={screenWidth} screenHeight={screenHeight} />
+                <GridTransition history={this.props.history} pushURL={this.state.pushURL} />
 
-       
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: 80,
+                    width: "100%",
+                    background: "rgb(100,100,0,0.0)",
+                    cursor: "pointer"
+                }}>
+                    <div className="img" style={projectButtonStyle}><span style={{color:"white"}}>{"<"} Previous Project</span></div>
+                    <div className="img" onClick={() => this.pushHome()} style={projectButtonStyle}><span style={{color:"white"}}>Return to Chart</span></div>
+                    <div className="img"  style={projectButtonStyle}><span style={{color:"white"}}>Next Project {">"}</span></div>
 
-    </div>)
+                </div>
+
+                <div style={{ height: mainPictureSize, width: "100%", display: "flex" }}>
+
+                    <div style={{ marginLeft: "10%", float: "left", width: "10%", background: "rgb(0,0,100,0.2)" }}>
+                        <VerticalThumbnails shiftIndex={this.shiftIndex} mainPictureSize={mainPictureSize} index={this.state.index} sections={this.state.projects[this.state.id]} />
+                    </div>
+
+                    <div style={{ marginLeft: "1%", float: "left", width: "30%", background: "rgb(0,100,0,0.2)", justifyContent: "center", display: "flex" }}>
+                        <img style={{ borderRadius: 5 }} src={imageurl} ></img>
+                    </div>
+
+                    <div style={{
+                        marginLeft: "1%",
+                        display: "flex",
+                        justifyContent: "center",
+                        float: "left",
+                        width: "38%",
+                        borderWidth: 1,
+                        borderRadius: 5,
+                        background: "rgb(210,205,210,0.45"
+                    }}>
+                        <SectionArrow shiftIndex={this.shiftIndex} index={this.state.index} size={this.state.projects[this.state.id].length} direction={-1} />
+                        <p style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}>{this.state.projects[this.state.id][this.state.index].title}</p>
+                        <SectionArrow shiftIndex={this.shiftIndex} index={this.state.index} size={this.state.projects[this.state.id].length} direction={1} />
+                    </div>
+
+                </div>
+
+
+
+            </div>)
+    }
 }
-}
 
-export {Project}
+export { Project }

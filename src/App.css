@@ -2,16 +2,7 @@
   text-align: center;
 }
 
-.container {
-  position: relative;
-  border: solid 1px red;
-  height: 256px;
-  width: 256px;
-  overflow: auto;
-  
-  float: left;
-  margin-right: 16px;
-}
+
 
 .inner {
   position: relative;
@@ -37,6 +28,8 @@
 
 .img { 
   opacity: 0.7; 
+  cursor:pointer;
+
 } 
 
 .img:hover { 
@@ -79,6 +72,18 @@
       linear-gradient(to bottom, #423b6b 1px, transparent 1px),
       linear-gradient(#2c2553, #2c2553);
   
+}
+
+.overlay {
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #bca5c7;
+  position:"absolute;"
+}
+
+.container:hover .overlay {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .container1{

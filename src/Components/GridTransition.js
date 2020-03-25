@@ -24,7 +24,8 @@ const style = (x, y, o) => ({
     border: "1px #2A253A solid",
     transition: "0.2s linear",
     zIndex: 3,
-    pointerEvents:"none"
+    pointerEvents:"none",
+    willChange: "opacity"
 })
 
 class GridTransition extends React.Component {
@@ -62,7 +63,7 @@ class GridTransition extends React.Component {
         if (this.state.trigger === 0) {
             var altered = [...Array(this.state.grid.length).keys()]
             this.setState({ altered: altered })
-            this.triggerTransition(1, "/project/"+this.props.pushURL)
+            this.triggerTransition(1, this.props.pushURL)
         }   
     }
 
@@ -116,9 +117,3 @@ function getRandom(min, max) {
 }
 
 export { GridTransition }
-
-/*
-                <button style={{ position: "absolute", zIndex: 4, left: 200, top: 200 }} onClick={this.start}>
-                  
-                </button>
-                */
