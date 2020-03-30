@@ -63,26 +63,26 @@ class GridTransition extends React.Component {
         if (this.state.trigger === 0) {
             var altered = [...Array(this.state.grid.length).keys()]
             this.setState({ altered: altered })
-            this.triggerTransition(1, this.props.pushURL)
+            this.triggerTransition(1)
         }   
     }
 
     //o = opacity, onExit = push to this location when transition finishes ( or don't if left blank)
-    triggerTransition(opacity, onExit = ""){
+    triggerTransition(opacity){
         this.timerID = setInterval(
-            () => this.tick(opacity, onExit),
+            () => this.tick(opacity),
             0.04
         );
     }
 
 
-    tick(opacity, onExit) {
+    tick(opacity) {
         //If there are no more tiles left to change
         if (this.state.altered.length == 0) {
             this.setState({ trigger: 0 })
             clearInterval(this.timerID);
-            if(onExit!=""){
-                this.props.history.push(onExit)
+            if(this.props.pushURL!=undefined){
+                this.props.history.push(this.props.pushURL)
             }
         } else {
             //Set state grid to new grid with tiles altered 10 at a time per interval

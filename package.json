@@ -14,7 +14,9 @@
     "react-indiana-drag-scroll": "^1.6.0",
     "react-overflow-scrolling": "^1.0.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "sql.js": "^1.2.1",
+    "sqlite": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

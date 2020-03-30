@@ -1,25 +1,31 @@
 
-
-
 function createProjects(){
     let projects = {
-        "unchained":unchained()    
+        "unchained":unchained(),
+        "nickynwsite":unchained()   
     }
     return projects
 }
 
+var titles = {
+    "unchained":"React Native Mobile App - Unchained",
+    "nickynwsite":"Personal Website"   
+}
+
+function getTitle(url){
+    return titles[url]
+}
+
+
+
 function unchained(){
     var sections = [];
     sections.push({
-        image:"placeholder0",
+        image:"unchainedoverview",
         title:"Overview"
     })
     sections.push({
-        image:"placeholder1",
-        title:"Justification"
-    })
-    sections.push({
-        image:"placeholder2",
+        image:"unchainedstack",
         title:"Review"
     })
     return sections;
@@ -27,4 +33,5 @@ function unchained(){
 }
 
 
-export {createProjects}
+
+export {createProjects, getTitle}

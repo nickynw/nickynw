@@ -1,10 +1,7 @@
-
 const tileSize = 40;
 const imageSize = 50;
 const screenHeight = getHeight()
 const screenWidth = getWidth();
-
-
 
 function getWidth() {
     let width = Math.max(
@@ -39,6 +36,5 @@ function getWidth() {
     }
     return height
   }
-
 
 export {tileSize, imageSize, screenHeight, screenWidth}

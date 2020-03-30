@@ -36,7 +36,7 @@ class Home extends React.Component {
                 height: "100%",
                 boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
             }}>
-                 <p style={{marginLeft: 50, color:"grey", position:"absolute"}}>Please select a project from the chart to view.</p>
+               
 
                 <GridTransition pushURL={this.state.pushURL} history={this.props.history} />
 
@@ -46,6 +46,7 @@ class Home extends React.Component {
                     height: screenHeight,
                     position: "absolute",
                 }}>
+                    <p style={{marginLeft: 50, color:"grey", position:"absolute"}}>Please select a project from the chart to view.</p>
                     {nodeDisplay}
                 </div>
 

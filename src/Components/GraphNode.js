@@ -6,8 +6,8 @@ import { tileSize } from '../Scripts/Global'
 class GraphNode extends React.Component {
 
   onMouseClick = () => {
-    if(this.props.node.url!=undefined){
-      this.props.handleClick("/project/"+this.props.node.url)
+    if(this.props.node.type=="C"){
+      this.props.handleClick("/project/"+this.props.node.id, this.props.node.text)
     }
   }
 

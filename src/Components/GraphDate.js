@@ -14,7 +14,7 @@ class GraphDate extends React.Component {
         position: "absolute",
         marginLeft: x + 5, 
         marginTop: y + 22, //half text height
-        color: (this.props.hoverState) ? "rgb(255,255,240,1)" : "rgb(200,190,200,0.8)",
+        color: (this.props.hoverState) ? "rgb(255,255,240,1)" : "rgb(230,230,240,0.8)",
         fontSize: 12
     }
 
