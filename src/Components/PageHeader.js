@@ -33,8 +33,7 @@ function PageHeader(props) {
 
 
     <div className="headerContainer" style={{
-      position: "absolute",
-      width: props.screenWidth, height: tileSize * 3,
+      width: "100%", height: tileSize * 3,
       justifyContent: "center", alignItems: "center", display: "flex",
     }} >
 

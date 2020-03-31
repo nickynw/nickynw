@@ -10,8 +10,27 @@ import { createProjects, getTitle } from '../Scripts/CreateProjects'
 import { VerticalThumbnails } from "../Components/VerticalThumbnails"
 import { SectionArrow } from '../Components/SectionArrow'
 import { Missing } from './Missing'
+import { ProjectsNavigator } from '../Components/ProjectsNavigator'
+import { StackList } from '../Components/StackList'
+import { FadeTransition } from "../Components/FadeTransition"
 
-const mainPictureSize = 500;
+
+
+const titleStyle = {
+    fontSize: 20,
+    color: "#e6e5dc",
+    padding: 10,
+    marginLeft: "auto",
+    marginRight: "auto"
+}
+
+const mainTitleStyle = {
+    fontSize: 30,
+    color: "#e6e5dc",
+    marginLeft: "auto",
+    marginRight: "auto"
+}
+
 
 class Project extends React.Component {
     constructor(props) {
@@ -34,98 +53,49 @@ class Project extends React.Component {
     }
 
     render() {
-        /*Declare variables*/
-        let imageurl = "/images/" + this.state.projects[this.state.id][this.state.index].image + ".png"
-        var projectButtonStyle = {
-            width: 150,
-            height: 30,
-            display: "flex",
-            justifyContent: "center",
-            borderRadius: 10,
-            border: "2px solid #615b75",
-            background: "#615b75",
-            transition: "opacity 0.3s ease",
-            margin: 5,
-        }
-
         /*If user typed in project themselves into url bar*/
         if (this.state.projects[this.state.id] == undefined) {
-            return (<Missing />)
+            return (
+                <FadeTransition
+                    history={this.props.history}
+                    pushURL={this.state.pushURL}
+                    content={<Missing />} />)
         }
-
-
-
-
+        /*Otherwise, all is well, show them the projects!*/
         return (
-            <div className="mainContainer" style={{
-                marginTop: 120,
-                overflow: "hidden",
-                overflowX: " hidden",
-                width: screenWidth,
-                height: "100%",
-                boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
-            }}>
-
-
-                <GridTransition history={this.props.history} pushURL={this.state.pushURL} />
-
-                <div style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: 60,
-                    width: "100%",
-
-                }}>
-                  <p style={{color:"white"}}>  {getTitle(this.state.id)}</p>
-                </div>
-
-                <div style={{ height: mainPictureSize, width: "100%", display: "flex" }}>
-
-                    <div style={{ marginLeft: "5%", float: "left", width: "10%", background: "rgb(0,0,100,0.2)" }}>
-                        <VerticalThumbnails shiftIndex={this.shiftIndex} mainPictureSize={mainPictureSize} index={this.state.index} sections={this.state.projects[this.state.id]} />
-                    </div>
-
-                    <div style={{ marginLeft: "2%", float: "left", width: mainPictureSize, background: "rgb(0,100,0,0.2)", justifyContent: "center", display: "flex" }}>
-                        <img style={{ width: "100%", height: "100%", borderRadius: 5 }} src={imageurl} ></img>
-                    </div>
-
+            <FadeTransition
+                history={this.props.history}
+                pushURL={this.state.pushURL}
+                content={
                     <div style={{
-                        marginLeft: "1%",
+                        width: screenWidth,
                         display: "flex",
-                        justifyContent: "center",
-                        float: "left",
-                        width: "38%",
-                        borderWidth: 1,
-                        borderRadius: 5,
-                        background: "rgb(210,205,210,0.45"
+                        flexDirection: "column",
+                        marginBottom: 80
                     }}>
-                        <SectionArrow shiftIndex={this.shiftIndex} index={this.state.index} size={this.state.projects[this.state.id].length} direction={-1} />
-                        <p style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}>{this.state.projects[this.state.id][this.state.index].title}</p>
-                        <SectionArrow shiftIndex={this.shiftIndex} index={this.state.index} size={this.state.projects[this.state.id].length} direction={1} />
-                    </div>
-
-                </div>
-
-                <div style={{
-
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: 80,
-                    width: "100%",
-                    background: "rgb(100,100,0,0.0)",
-                    cursor: "pointer"
-                }}>
-                    <div className="img" style={projectButtonStyle}><span style={{ color: "white" }}>{"<"} Previous Project</span></div>
-                    <div className="img" onClick={() => this.pushHome()} style={projectButtonStyle}><span style={{ color: "white" }}>Return to Chart</span></div>
-                    <div className="img" style={projectButtonStyle}><span style={{ color: "white" }}>Next Project {">"}</span></div>
-
-                </div>
 
 
+                        <ProjectsNavigator pushHome={this.pushHome} />
 
-            </div>)
+                        <p style={mainTitleStyle}>{this.state.projects[this.state.id].title}</p>
+
+                        <p style={titleStyle}>Goals</p>
+                        <ul style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}>
+                            {this.state.projects[this.state.id].goals.map((goal) => <li>{goal}</li>)}
+                        </ul>
+
+                        <p style={titleStyle}>Stack</p>
+                        <StackList stack={this.state.projects[this.state.id].stack} />
+
+                        <p style={titleStyle}>Description and Review</p>
+                        <div style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}>{this.state.projects[this.state.id].content}</div>
+
+                        <p style={titleStyle}>Future Developments</p>
+                        <ul style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}>
+                            {this.state.projects[this.state.id].future.map((item) => <li>{item}</li>)}
+                        </ul>
+
+                    </div>} />)
     }
 }
 

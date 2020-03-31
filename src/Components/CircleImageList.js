@@ -25,7 +25,7 @@ class CircleImageList extends React.Component {
                 opacity: (this.props.hoverState) ? 1:0.7
             }
             let imageurl = "/images/" + url + ".png"
-            let imageNode = <img style={imageStyle} src={imageurl} ></img>
+            let imageNode = <img style={imageStyle} src={imageurl} />
             imageDisplay.push(imageNode)
         })
 

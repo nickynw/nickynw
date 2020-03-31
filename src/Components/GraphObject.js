@@ -21,7 +21,7 @@ class GraphObject extends React.Component {
 
     render() {
         return (
-            <div id={"Node_" + this.props.node.key} >
+            <div id={"Node_" + this.props.node.key}>
 
                 {this.props.node.date != undefined &&
                     <GraphDate node={this.props.node} hoverState={this.state.hoverState} />

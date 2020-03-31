@@ -4,6 +4,7 @@ import { GridTransition } from "../Components/GridTransition"
 import { screenHeight, screenWidth } from '../Scripts/Global'
 import { graphObjects } from "../Scripts/Nodes"
 import { GraphObject } from '../Components/GraphObject'
+import { FadeTransition } from "../Components/FadeTransition"
 
 class Home extends React.Component {
     constructor(props) {
@@ -29,28 +30,22 @@ class Home extends React.Component {
         }
 
         return (
-            <div style={{
-                marginTop: 120,
-                overflow: "hidden",
-                width: screenWidth,
-                height: "100%",
-                boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
-            }}>
-               
 
-                <GridTransition pushURL={this.state.pushURL} history={this.props.history} />
-
-                <div style={{
-                    zIndex: 1,
-                    width: screenWidth,
-                    height: screenHeight,
-                    position: "absolute",
-                }}>
-                    <p style={{marginLeft: 50, color:"grey", position:"absolute"}}>Please select a project from the chart to view.</p>
-                    {nodeDisplay}
-                </div>
-
-            </div>)
+            <FadeTransition
+            history={this.props.history}
+                pushURL={this.state.pushURL}
+                content={
+                    <div style={{
+                        position: "relative",
+                        display: "flex",
+                        flexDirection: "column",
+                        marginLeft: 50, 
+                    }}>
+                        <p style={{ marginLeft: "auto", marginRight: "auto", color: "grey" }}>Please select a project from the chart to view.</p>
+                        {nodeDisplay}
+                    </div>}
+            />
+        )
     }
 }
 
