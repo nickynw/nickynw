@@ -1,3 +1,5 @@
+import {projects} from './CreateProjects'
+
 const types = {
   "A": {
     width: 120,
@@ -34,14 +36,18 @@ const types = {
 
 function createNodes(){
   let nodes = {
-    "1": {x:1, y:8, type:"A", id: "root", text:"nickynw"},
-    "2": {x:6, y:10, type:"B", id:"art and design", text:"Art and Design (WIP)"},
-    "3": {x:6, y:6, type:"B", id:"softwareeng", text:"Software Engineering"},
-    "4": {x:10, y:2, type:"C", id: "nickynwsite", text:"This Website", images:["react", "javascript"], date:"**NEW**"},
-    "5": {x:12, y:5, type:"C", id: "unchained", text:"Unchained - An Independent Cafe Finding App", images:["reactnative", "javascript", "firebase"], date:"03/2020"},
+    //root
+    "1": {x:1, y:8, type:"A", text:"nickynw"},
+    //categories
+    "2": {x:6, y:10, type:"B", text:"Art and Design (WIP)"},
+    "3": {x:6, y:6, type:"B", text:"Software Engineering"},
+    //projects
+    "4": {x:10, y:2, type:"C", project: projects[0]},
+    "5": {x:12, y:5, type:"C", project: projects[1]},
+    /*"5": {x:12, y:5, type:"C", id: "unchained", text:"Unchained - An Independent Cafe Finding App", images:["reactnative", "javascript", "firebase"], date:"03/2020"},
     "6": {x:13.5, y:8, type:"C", id:"qbot", text:"Qbot: An Online Multiple-choice Question Generator", images:["python", "django", "flask", "postgres", "neo4j"], date:"01/2020"},
     "7": {x:15, y:11, type:"C", id:"mscparkinsons", text:"(MSc) Learning about Parkinson's through Haptic VR", images:["unity", "csharp", "oculus"], date:"09/2019"},
-    "8": {x:16, y:14, type:"C", id:"java", text:"Misc. Java Projects", images:["java", "javafx"], date:"04/2019"},
+    "8": {x:16, y:14, type:"C", id:"java", text:"Misc. Java Projects", images:["java", "javafx"], date:"04/2019"},*/
   }
   return nodes;
 }
@@ -49,7 +55,7 @@ function createNodes(){
 function createEdges(){
   var edges = {
     "1": ["2" ,"3"], 
-    "3": ["4", "5", "6", "7", "8"],
+    "3": ["4", "5"]//, "5", "6", "7", "8"],
    }
    return edges
 }

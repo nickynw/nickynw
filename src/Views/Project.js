@@ -1,14 +1,7 @@
 import React from 'react';
 import '../App.css';
 
-import { PageHeader } from '../Components/PageHeader'
-import { Graph } from '../Components/Graph'
-import { GridTransition } from "../Components/GridTransition"
-import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
-import { screenHeight, screenWidth } from '../Scripts/Global'
-import { createProjects, getTitle } from '../Scripts/CreateProjects'
-import { VerticalThumbnails } from "../Components/VerticalThumbnails"
-import { SectionArrow } from '../Components/SectionArrow'
+import { createProjects, projectIndex, projects } from '../Scripts/CreateProjects'
 import { Missing } from './Missing'
 import { ProjectsNavigator } from '../Components/ProjectsNavigator'
 import { StackList } from '../Components/StackList'
@@ -35,31 +28,29 @@ const mainTitleStyle = {
 class Project extends React.Component {
     constructor(props) {
         super(props);
+        var index = projectIndex(this.props.match.params.id)
         this.state = {
-            id: this.props.match.params.id,
-            projects: createProjects(),
-            index: 0
+            project: projects[index],
+            prevProject: (0) ? projects[index - 1].id : "",
+            nextProject: (0) ? projects[index + 1].id : ""
         };
     }
 
-    pushHome = () => {
+    pushToURL = (url) => {
         this.setState({
-            pushURL: "/"
+            pushURL: url
         });
-    }
-
-    shiftIndex = (newIndex) => {
-        this.setState({ index: newIndex })
     }
 
     render() {
         /*If user typed in project themselves into url bar*/
-        if (this.state.projects[this.state.id] == undefined) {
+        if (this.state.project == undefined || this.state.project.WIP==true) {
             return (
                 <FadeTransition
                     history={this.props.history}
                     pushURL={this.state.pushURL}
-                    content={<Missing />} />)
+                    content={<Missing pushToURL={this.pushToURL} 
+                    message="This project does not exist, or is currently a Work In Progress. Please try choosing a (different) project from the chart!"/>} />)
         }
         /*Otherwise, all is well, show them the projects!*/
         return (
@@ -68,31 +59,34 @@ class Project extends React.Component {
                 pushURL={this.state.pushURL}
                 content={
                     <div style={{
-                        width: screenWidth,
+                        width: "100%",
                         display: "flex",
                         flexDirection: "column",
                         marginBottom: 80
                     }}>
 
 
-                        <ProjectsNavigator pushHome={this.pushHome} />
+                        <ProjectsNavigator pushToURL={this.pushToURL} nextProject={this.state.nextProject} prevProject={this.state.prevProject} />
 
-                        <p style={mainTitleStyle}>{this.state.projects[this.state.id].title}</p>
+                        <p style={mainTitleStyle}>
+                            {this.state.project.title} {`\t`}
+                            <span style={{fontSize: 15}}>({this.state.project.date})</span>
+                        </p>
 
                         <p style={titleStyle}>Goals</p>
                         <ul style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}>
-                            {this.state.projects[this.state.id].goals.map((goal) => <li>{goal}</li>)}
+                            {this.state.project.goals.map((goal) => <li>{goal}</li>)}
                         </ul>
 
                         <p style={titleStyle}>Stack</p>
-                        <StackList stack={this.state.projects[this.state.id].stack} />
+                        <StackList stack={this.state.project.stack} />
 
                         <p style={titleStyle}>Description and Review</p>
-                        <div style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}>{this.state.projects[this.state.id].content}</div>
+                        <div style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}>{this.state.project.content}</div>
 
                         <p style={titleStyle}>Future Developments</p>
                         <ul style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}>
-                            {this.state.projects[this.state.id].future.map((item) => <li>{item}</li>)}
+                            {this.state.project.future.map((item) => <li>{item}</li>)}
                         </ul>
 
                     </div>} />)

@@ -19,7 +19,7 @@ class GraphLine extends React.Component {
 
 
     var strokeWidth = (this.props.hoverState) ? "2" : "1"
-    var strokeColour = (this.props.hoverState) ? "white" : "grey"
+    var strokeColour = (this.props.hoverState) ? "white" : "#a8a8a0"
 
     var dateBoxWidth = 60
     var dateBoxHeight = 20

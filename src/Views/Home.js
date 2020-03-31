@@ -41,7 +41,7 @@ class Home extends React.Component {
                         flexDirection: "column",
                         marginLeft: 50, 
                     }}>
-                        <p style={{ marginLeft: "auto", marginRight: "auto", color: "grey" }}>Please select a project from the chart to view.</p>
+                        <p style={{ marginLeft: "auto", marginRight: "auto", color: "#a8a8a0" }}>Please select a project from the chart to view.</p>
                         {nodeDisplay}
                     </div>}
             />

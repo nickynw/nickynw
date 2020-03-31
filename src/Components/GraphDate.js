@@ -20,7 +20,7 @@ class GraphDate extends React.Component {
 
     return (
 
-        <p style={dateStyle}>{this.props.node.date}</p>
+        <p style={dateStyle}>{this.props.node.project.date}</p>
  
     )
   }

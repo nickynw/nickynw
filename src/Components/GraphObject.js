@@ -23,13 +23,13 @@ class GraphObject extends React.Component {
         return (
             <div id={"Node_" + this.props.node.key}>
 
-                {this.props.node.date != undefined &&
+                {this.props.node.project != undefined &&
                     <GraphDate node={this.props.node} hoverState={this.state.hoverState} />
                 }
 
                 <GraphNode node={this.props.node} setHoverState={this.setHoverState} hoverState={this.state.hoverState} handleClick={this.props.handleClick} />
 
-                {this.props.node.images != undefined &&
+                {this.props.node.project != undefined &&
                     <CircleImageList hoverState={this.state.hoverState} node={this.props.node} />
                 }
 

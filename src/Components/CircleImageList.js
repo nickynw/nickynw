@@ -8,7 +8,7 @@ class CircleImageList extends React.Component {
     render() {
         var imageDisplay = [];
         var imageSize = 50;
-        var images = this.props.node.images;
+        var images = this.props.node.project.stack.map(item => item.image);
         var imageSeperation = (this.props.hoverState) ? 13: 8;
         var imagesOffset = types[this.props.node.type].width + 90 + imageSeperation;
  

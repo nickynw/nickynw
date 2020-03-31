@@ -6,28 +6,33 @@ import { Graph } from '../Components/Graph'
 import { GridTransition } from "../Components/GridTransition"
 import { NavLink, Switch, Route } from 'react-router-dom';
 import { screenHeight, screenWidth } from '../Scripts/Global'
-
+import { Missing } from './Missing'
+import { FadeTransition } from "../Components/FadeTransition"
 
 class Error404 extends React.Component{
-    componentDidMount(){
-        this.props.history.push('/404')
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            pushURL: ""
+        };
     }
 
+
+    pushToURL = (url) => {
+        this.setState({
+            pushURL: url
+        });
+    }
+
+
   render(){
-    return(
-    <div className="mainContainer" style={{
-        marginTop: 120,
-        overflow: "hidden",
-        overflowX: " hidden",
-        width: screenWidth,
-        height: "100%",
-        boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
-    }}> 
-        <GridTransition history={this.props.history} screenWidth={screenWidth} screenHeight={screenHeight} />
-
-       
-
-    </div>)
+     return (
+                <FadeTransition
+                    history={this.props.history}
+                    pushURL={this.state.pushURL}
+                    content={<Missing pushToURL={this.pushToURL}
+                    message="Sorry that page does not seem to exist." />} />)
 }
 }
 

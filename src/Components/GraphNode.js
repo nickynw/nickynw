@@ -7,7 +7,7 @@ class GraphNode extends React.Component {
 
   onMouseClick = () => {
     if(this.props.node.type=="C"){
-      this.props.handleClick("/project/"+this.props.node.id, this.props.node.text)
+      this.props.handleClick("/project/"+this.props.node.project.id)
     }
   }
 
@@ -41,12 +41,17 @@ class GraphNode extends React.Component {
 
     const fontStyle = types[this.props.node.type].style;
 
+    var text = this.props.node.text
+    if(this.props.node.type=="C"){
+      text = this.props.node.project.title
+    }
+
     return (
         <div style={style} onMouseEnter={this.onMouseEnter} onClick={this.onMouseClick} onMouseLeave={this.onMouseLeave}>
           <p style={fontStyle}>
-            {this.props.node.text}
+            {text}
           </p>
-          </div>
+        </div>
     )
   }
 }

@@ -1,21 +1,39 @@
 import React from 'react';
 import '../App.css';
-import { screenHeight, screenWidth } from '../Scripts/Global'
+
+const projectButtonStyle = {
+        width: 150,
+        height: 30,
+        display: "flex",
+        justifyContent: "center",
+        borderRadius: 10,
+        border: "2px solid #615b75",
+        background: "#615b75",
+        transition: "opacity 0.3s ease",
+        margin: 5,
+    
+}
+
 
 class Missing extends React.Component {
 
     render() {
 
         return (
-            <div className="mainContainer" style={{
+            <div style={{
                 marginTop: 120,
-                width: screenWidth,
-                height: "100%",
-                boxShadow: "5px 5px 10px 0 #060017, 5px 5px 5px #504080",
+                width: "100%",
                 display: "flex",
+                flexDirection:"column",
                 justifyContent: "center",
+                alignItems:"center"
             }}>
-                <p style={{ color: "white" }}>This project does not exist, or is currently a Work In Progress. Try choosing a (different) project from the chart!</p>
+                <div className="img"
+                    onClick={() => this.props.pushToURL("/")}
+                    style={projectButtonStyle}>
+                    <span style={{ color: "white" }}>Return to Chart</span>
+                </div>
+                <p style={{ color: "white" }}>{this.props.message}</p>
             </div>
         )
 
