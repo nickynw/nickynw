@@ -11,7 +11,6 @@ const figureStyle = {
     padding: 10,
     opacity: 0.8, 
     maxWidth: 600, 
-
     alignItems: "center",
     display: "flex",
     flexDirection: "column",
@@ -32,7 +31,7 @@ var nickynwsite = () => {
     var stack = [
         { image: "javascript", description: "Principal language, along with JSX for working with React." },
         { image: "react", description: "React, a Javascript Library, was used to build a component-based web app." },
-        { image: "githubpages", description: "Github pages was used to deploy the web application for free." }
+        { image: "githubpages", description: "Github pages was is currently being used to deploy the site for free." }
     ]
     var goals = [
         "Introduce myself to the React javascript framework",
@@ -43,7 +42,6 @@ var nickynwsite = () => {
         (<div style={{ display: "flex", flexDirection: "column" }}>
             This project involved building a personal website to use as a portfolio for my work.
             It is focused more on my software development, covering work I have done in my free time since graduating with my Master's degree in September.
-            I am not including any screenshots as the website project kind of speaks for itself here.
 
             <p>I actually started working on this site after already using React Native to make an app (see previous project).
             As I had a positive experience with React Native, I thought I'd also make my personal website using React.js, which would also have the added benefit of consolidating some of the shared concepts that I covered using these frameworks.
@@ -60,8 +58,13 @@ var nickynwsite = () => {
             If this is the first project you've looked at so far on my website, feel free to keep exploring. In my opinion, my other projects are more exciting.
             </p>
 
-            <img alt=""style={{ margin: 20, borderRadius: 10, opacity: 0.8, maxWidth:800}} src={imageurl("oldstylepreview")}></img>
+            <div style={figureStyle}>
+            <img alt=""style={figureImage} src={imageurl("oldstylepreview")}></img>
+            Figure 1: Screenshot taken of the first version of the website, which used an algorithm to do a forced-direction graph for project navigation.
+            </div>
 
+
+        
 
         </div>)
     var future = [
@@ -91,7 +94,7 @@ var unchained = () => {
     ]
     var goals = [
         "Introduce myself to the React Native and develop my skills in javascript.",
-        "Create a new App that fills a gap in the market / provides a service me and my friends actually wanted to use."
+        "Create a new App for both iOS and Android that fills a gap in the market / provides a service me and my friends actually wanted to use. (Easily searching for independent cafes nearby)"
     ]
     var content =
         (<div style={{ display: "in-line" }}>
@@ -120,7 +123,8 @@ var unchained = () => {
     var future = [
         "In terms of future direction for this app, as of march, once the google ads are approved I will hopefully upload the app on the google play store so my friends can use it. This has been delayed due to the COVID-19 Pandemic (As I am unsure if the google data will reflect quarantine closings)",
         "Possibly develop an iOS version (At the moment I am having difficulties emulating without access to apple products, and I can't borrow anything due to quarantine)",
-        "I may also look into applying the same concept for restaurant and shopping results too."
+        "I may also look into applying the same concept for restaurant and shopping results too.",
+        "I also want to introduce searching for other areas, however making these requests costs a bit of money."
     ]
     return {
         WIP: WIP, id: id, date: date, title: title, stack: stack, goals: goals, content: content, future: future
@@ -151,7 +155,9 @@ var qbot = () => {
     ]
     var content =
         (<div style={{ display: "in-line" }}>
-            This project will soon be made available on github.
+            This project will soon be made available on github. To summarise the project, the MCQ generator is a web application for use primarily by medical students.
+            Using the relationships between data in a back-end database, it forms questions which are difficult to answer, as fake alternative answers are drawn from nearby, related nodes.
+            Question and answer combinations are randomised, and answers can be grouped together to form another layer of complexity. (See previews at bottom of page)
 
             Both websites are hosted for free online via Heroku, however after visiting it will take ~1 minute to load as the web worker sleeps after inactivity.
 
@@ -171,9 +177,9 @@ var qbot = () => {
             <p>After completing my third year of Neuroscience and then my master's in Computer Science, I decide to revisit this idea in January 2020.
             However this time I wanted to try with a graph database, as modelling questions based on relationships with nodes, rather than with tables, better reflected my idea of how MCQ's should be generated.
             I also took the opportunity to try Flask this time, so I could compare the two python frameworks for the same task to see which I felt more comfortable using.
-            After producing the second version (Version 2, Qbot), I felt that I had a much better understanding of python.
-            I had used libraries to convert excel spreadsheets into nodes for the graph database, experience which would later proved useful for technical tests for some jobs.
-            I also learnt how to use the language CYPHER, which is similar to SQL, at least preparing the statements I needed for the purposes of my project.
+            After producing the second version (Version 2, Qbot), I felt that I had a much better understanding of Python.
+            I had used a library to convert excel spreadsheets pythonically into CYPHER scripts to add nodes to the graph database. This experience which later proved useful when doing technical tests for some potential jobs.
+            This also meant I had to learn CYPHER, which is similar to SQL, where I experimented with preparing the scripts I needed for gathering data to form MCQ questions.
             One problem is that because I've spent time working on graph databases but these are far less common than relational databases.
             So in the future I may need to work more in PostgreSQL or other SQL DBMS to consolidate my understanding of RDBMS.
             </p>
@@ -233,60 +239,56 @@ var mscparkinsons = () => {
                 Narration, combined with graphic effects and interactive elements, are used to point to and describe how healthy brain cells are affected by Parkinson's.
                 Symptoms of Parkinson's are also described to participants, who are also provided with physical devices to simulate physical symptoms that affect mobility and elicit tremors.
                 Half the partipants were not given any of these physical devices. I then used surveys and questions to see whether using these devices lead to noticeable differences in self-reported empathy, and short-term memory of information regarding Parkinson's.
- </p>
+            </p>
 
-                The project had several stages which are summarised in a list below:
+            The project had several stages which are summarised in a list below:
             
-                    <li>Preparing a research proposal and experimental method/setup for gathering and evaluating user-feedback.</li>
-                    <li>Developing the concept, designing and planning the virtual scene and content.</li>
-                    <li>Graphic and audio design to build an immersive VR experience and base the designs on existing Neuroscience Research. (see Figure 1)</li>
+            <li>Preparing a research proposal and experimental method/setup for gathering and evaluating user-feedback.</li>
+            <li>Developing the concept, designing and planning the virtual scene and content.</li>
+            <li>Graphic and audio design to build an immersive VR experience and base the designs on existing Neuroscience Research. (see Figure 1)</li>
 
-                    <div style={figureStyle}>
-                    <img alt=""style={figureImage} src={imageurl("graphicspreview")}></img>
-                    Figure 1: A) A microscopic photograph of microglia brain cells adapted from <a href="https://www.neuroscienceassociates.com/neurosafety-testing/evaluation-of-perturbationsinflammation/">NeuroScience Associates online material.</a> B) A 3D model based of Microglia made in Blender as seen in VR experience.
-                    </div>
+            <div style={figureStyle}>
+            <img alt=""style={figureImage} src={imageurl("graphicspreview")}></img>
+            Figure 1: A) A microscopic photograph of microglia brain cells adapted from <a href="https://www.neuroscienceassociates.com/neurosafety-testing/evaluation-of-perturbationsinflammation/">NeuroScience Associates online material.</a> B) A 3D model based of Microglia made in Blender as seen in VR experience.
+            </div>
                     
-  
+            <li>Software development, implementing animations, interactive elements, phases/checkpoints, narration, physics, obstacles for a 3D space. (See Figures 2, 3)</li>
 
+            <div style={figureStyle}>
+            <img alt=""style={figureImage} src={imageurl("algorithmpreview")}></img>
+            Figure 2: An example of a problem faced during development: producing an algorithm to recognise directed paths across highly branched 3D models. Blue lines depict successfully identified paths.
+            </div>
 
-                    <li>Software development, implementing animations, interactive elements, phases/checkpoints, narration, physics, obstacles for a 3D space. (See Figures 2, 3)</li>
+            <div style={figureStyle}>
+            <img alt=""style={figureImage} src={imageurl("vrpreview")}></img>
+            Figure 3: Screenshots taken during the completed VR experience showing typical gameplay an interactive elements.
+            A) Typical narrated scene B) Player aiming at targets using Go controller C) Circling features in the environment using the controller.
+            </div>
 
+            <li>Organising meetings through Parkinson's UK with people with Parkinson's to discuss simulation of their experiences in VR, and creating physical haptic devices to reflect those experiences.</li>
+            <li>Preparing the hardware (Oculus Go), and preparing the physical setup for testing the participants. (see Figure 4)</li>
+            <div style={figureStyle}>
+            <img alt=""style={figureImage} src={imageurl("setuppreview")}></img>
+            Figure 4: It's me! I'm geared up to start the experience in a quiet space at the University of Bristol, wearing some of the haptic devices used in this experiment.
+            </div>
 
-                    <div style={figureStyle}>
-                    <img alt=""style={figureImage} src={imageurl("algorithmpreview")}></img>
-                    Figure 2: An example of a problem faced during development: producing an algorithm to recognise directed paths across highly branched 3D models. Blue lines depict successfully identified paths.
-                    </div>
+            <li>Collection results, statistical analysis, and evaluation/write-up. (see Figure 5)</li>
 
-                    <div style={figureStyle}>
-                    <img alt=""style={figureImage} src={imageurl("vrpreview")}></img>
-                Figure 3: Screenshots taken during the completed VR experience showing typical gameplay an interactive elements.
-                        A) Typical narrated scene B) Player aiming at targets using Go controller C) Circling features in the environment using the controller.
-                    </div>
-
-                    <li>Organising meetings through Parkinson's UK with people with Parkinson's to discuss simulation of their experiences in VR, and creating physical haptic devices to reflect those experiences.</li>
-                    <li>Preparing the hardware (Oculus Go), and preparing the physical setup for testing the participants. (see Figure 4)</li>
-                    <div style={figureStyle}>
-                    <img alt=""style={figureImage} src={imageurl("setuppreview")}></img>
-                    Figure 4: It's me! I'm geared up to start the experience in a quiet space at the University of Bristol, wearing some of the haptic devices used in this experiment.
-                    </div>
-
-
-
-                    <li>Collection results, statistical analysis, and evaluation/write-up. (see Figure 5)</li>
-
-                    <div style={figureStyle}>
-                    <img alt=""style={figureImage} src={imageurl("resultspreview")}></img>
-                    Figure 5: One of the things measured following the experiment was participant's ability to remember symptoms and facts relating to Parkinson's. Overall there was no statistical difference between the group with haptics and the group without.
-
-                    </div>
+            <div style={figureStyle}>
+            <img alt=""style={figureImage} src={imageurl("resultspreview")}></img>
+            Figure 5: One of the things measured following the experiment was participant's ability to remember symptoms and facts relating to Parkinson's. Overall there was no statistical difference between the group with haptics and the group without.
+            </div>
 
                 <p>The Full Abstract:</p>
 
-                
-There has recently been a resurgence of interest in the field of Virtual Reality (VR), alongside advancements in haptic technology which convey physical sensations from the virtual environment. It is currently unclear whether the integration of haptics in VR supports empathetic perspective-taking when sharing experiences of health conditions in VR, or whether it promotes learning when utilised as part of immersive `Serious Games' in education. The current project ran a workshop with Parkinson's UK to discuss how the experiences of people with Parkinson's could be simulated in VR, and particularly how their physical symptoms might be simulated using haptic devices. A novel educational Virtual Reality experience (VRE) was developed which reveals some of the biological changes that occur in a Parkinson's-affected brain. Based on discussion in the workshop, the VRE also implemented a first-person narration of some of the thoughts and feelings of people with Parkinson's, alongside passive haptic devices aiming to simulate a number of physical symptoms with low fidelity. The VRE was deployed to members of the public as part of a pilot study, under an integrated-haptics or non-haptic (control) condition. Under both conditions, participants reported feeling more empathetic towards people with Parkinson's following their experience and generally agreed the VRE could be useful for teaching empathy and for learning. The study found that there was no significant difference in subjective measures of engagement, presence, and empathetic perspective-taking, or in information recall tests between the two conditions. However, qualitative discussions with participants in the haptic condition revealed that people felt their perspective-taking was indeed supported by the passive simulating haptics, suggesting that differences in empathy may not be reflected in the survey used in the current study, or there may be a ceiling effect for empathy when utilising VR for sharing experiences of health.
+                There has recently been a resurgence of interest in the field of Virtual Reality (VR), alongside advancements in haptic technology which convey physical sensations from the virtual environment. 
+                It is currently unclear whether the integration of haptics in VR supports empathetic perspective-taking when sharing experiences of health conditions in VR, or whether it promotes learning when utilised as part of immersive `Serious Games' in education. 
+                The current project ran a workshop with Parkinson's UK to discuss how the experiences of people with Parkinson's could be simulated in VR, and particularly how their physical symptoms might be simulated using haptic devices. 
+                A novel educational Virtual Reality experience (VRE) was developed which reveals some of the biological changes that occur in a Parkinson's-affected brain. Based on discussion in the workshop, the VRE also implemented a first-person narration of some of the thoughts and feelings of people with Parkinson's, alongside passive haptic devices aiming to simulate a number of physical symptoms with low fidelity. 
+                The VRE was deployed to members of the public as part of a pilot study, under an integrated-haptics or non-haptic (control) condition. Under both conditions, participants reported feeling more empathetic towards people with Parkinson's following their experience and generally agreed the VRE could be useful for teaching empathy and for learning. 
+                The study found that there was no significant difference in subjective measures of engagement, presence, and empathetic perspective-taking, or in information recall tests between the two conditions. 
+                However, qualitative discussions with participants in the haptic condition revealed that people felt their perspective-taking was indeed supported by the passive simulating haptics, suggesting that differences in empathy may not be reflected in the survey used in the current study, or there may be a ceiling effect for empathy when utilising VR for sharing experiences of health.
             
-
-
         </div>)
     var future = [
         "I am not currently workig on this project anymore, however potential future improvements and routes for research are listed in the thesis.",

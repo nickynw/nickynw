@@ -7,6 +7,7 @@ const imageStyle = {
     borderRadius: 5,
 }
 
+/*This will be used or adapted for use in art and design section*/
 class VerticalThumbnails extends React.Component {
 
     clickEvent = (index) => {

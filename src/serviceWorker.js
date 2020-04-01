@@ -1,3 +1,9 @@
+/*// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister(); Taken from bottom of index*/
+
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 

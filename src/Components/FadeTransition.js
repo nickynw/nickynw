@@ -37,6 +37,7 @@ class FadeTransition extends React.Component {
             this.props.history.push(this.props.pushURL)
 
             if (!this.props.pushURL.includes("/")) {
+                window.scrollTo(0, 0);
                 window.location.reload();
             }
         }

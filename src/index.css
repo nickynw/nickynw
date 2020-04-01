@@ -8,9 +8,9 @@ body {
   background-size: 40px 40px;
   background-image:
 
-      linear-gradient(to right, #71698f  1px, transparent 1px),
-      linear-gradient(to bottom, #71698f 1px, transparent 1px),
-      linear-gradient(#675b8f, #675b8f);
+      linear-gradient(to right, #7c7597  1px, transparent 1px),
+      linear-gradient(to bottom, #7c7597 1px, transparent 1px),
+      linear-gradient(#6d6292, #6d6292);
 }
 
 code {

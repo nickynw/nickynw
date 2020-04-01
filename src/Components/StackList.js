@@ -9,7 +9,8 @@ class StackList extends React.Component {
         this.props.stack.forEach((item) => {
             stack.push(
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding:!item.image && 15}}>
-                    {item.image && <img alt="" src={imageurl(item.image)} style={{ width: 60, height: 60, marginRight: 50, borderRadius:2}}></img>}
+                    {item.image && <img alt="" src={imageurl(item.image)} style={{ width: 60, height: 60,
+                        minWidth: 60, minHeight: 60, marginRight: 50, borderRadius:2}}></img>}
                     {item.description}
                 </div>)
         })

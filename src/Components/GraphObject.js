@@ -19,8 +19,7 @@ class GraphObject extends React.Component {
 
     render() {
         return (
-            <div id={"Node_" + this.props.node.key}
-            style={{opacity:(this.props.mode)+1, transition:"opacity 0.3s ease"}}>
+            <div id={"Node_" + this.props.node.key}>
 
                 {this.props.node.project !== undefined &&
                     <GraphDate node={this.props.node} hoverState={this.state.hoverState} />

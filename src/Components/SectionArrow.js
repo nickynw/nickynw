@@ -12,9 +12,7 @@ function shift(n, direction, size) {
     return x
 }
 
-//shift(this.state.index, -1, this.state.projects[this.state.id].length) 
-
-
+/*This will be used or adapted for use in art and design section*/
 class SectionArrow extends React.Component {
 
     clickEvent = () => {

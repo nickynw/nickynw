@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-
 import { projectIndex, projects } from '../Scripts/CreateProjects'
 import { Missing } from './Missing'
 import { ProjectsNavigator } from '../Components/ProjectsNavigator'
@@ -23,6 +22,25 @@ const mainTitleStyle = {
     marginRight: "auto"
 }
 
+const divStyle = {
+    width: "100%",
+    minWidth: document.documentElement.clientWidth,
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 80
+}
+
+const bulletSectionStyle = {
+    marginLeft: "auto", 
+    marginRight: "auto", 
+    width: "60%" 
+}
+
+const descriptionStyle = {
+    marginLeft: "auto", 
+    marginRight: "auto", 
+    width: "70%"
+}
 
 class Project extends React.Component {
     constructor(props) {
@@ -34,10 +52,6 @@ class Project extends React.Component {
             prevProject: (index < projects.length - 1) ? projects[index + 1].id : "",
             pushURL: ""
         };
-    }
-
-    componentDidMount() {
-
     }
 
     pushToURL = (url) => {
@@ -66,16 +80,9 @@ class Project extends React.Component {
                 pushURL={this.state.pushURL}
                 url={this.props.location.pathname}
                 content={
-                    <div style={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        marginBottom: 80
-                    }}>
-
+                    <div style={divStyle}>
 
                         <ProjectsNavigator pushToURL={this.pushToURL} nextProject={this.state.nextProject} prevProject={this.state.prevProject} />
-
                              
                         <p style={mainTitleStyle}>
                             {this.state.project.title} {`\t`}
@@ -83,7 +90,7 @@ class Project extends React.Component {
                         </p>
 
                         <p style={titleStyle}>Goals</p>
-                        <ul style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}>
+                        <ul style={bulletSectionStyle}>
                             {this.state.project.goals.map((goal) => <li>{goal}</li>)}
                         </ul>
 
@@ -91,12 +98,14 @@ class Project extends React.Component {
                         <StackList stack={this.state.project.stack} />
 
                         <p style={titleStyle}>Description and Review</p>
-                        <div style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}>{this.state.project.content}</div>
+                        <div style={descriptionStyle}>{this.state.project.content}</div>
 
                         <p style={titleStyle}>Future Developments</p>
-                        <ul style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}>
+                        <ul style={bulletSectionStyle}>
                             {this.state.project.future.map((item) => <li>{item}</li>)}
                         </ul>
+
+                        <ProjectsNavigator pushToURL={this.pushToURL} nextProject={this.state.nextProject} prevProject={this.state.prevProject} />
 
                     </div>} />)
     }

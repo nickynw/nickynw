@@ -9,9 +9,6 @@ class GraphNode extends React.Component {
     if(this.props.node.type==="C"){
       this.props.handleClick("/project/"+this.props.node.project.id)
     }
-    if(this.props.node.type==="B"){
-      this.props.handleClick(this.props.node.value)
-    }
   }
 
   onMouseEnter = () => this.props.setHoverState(true)
@@ -19,9 +16,12 @@ class GraphNode extends React.Component {
   onMouseLeave = () => this.props.setHoverState(false)
 
   render() {
+    const fontStyle = types[this.props.node.type].style
+
+    var text = (this.props.node.type==="C") ? this.props.node.project.title : this.props.node.text
+
     var x = this.props.node.x * tileSize
     var y = this.props.node.y * tileSize - types[this.props.node.type].height / 2
-
     const style = {
       position: "absolute",
       marginLeft: (this.props.node.type === "C") ? x + 70 : x,
@@ -41,14 +41,6 @@ class GraphNode extends React.Component {
       transition: "1s",
       cursor: 'pointer'
     }
-
-    const fontStyle = types[this.props.node.type].style;
-
-    var text = this.props.node.text
-    if(this.props.node.type==="C"){
-      text = this.props.node.project.title
-    }
-
     return (
         <div style={style} onMouseEnter={this.onMouseEnter} onClick={this.onMouseClick} onMouseLeave={this.onMouseLeave}>
           <p style={fontStyle}>
