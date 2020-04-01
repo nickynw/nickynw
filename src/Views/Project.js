@@ -1,12 +1,11 @@
 import React from 'react';
 import '../App.css';
 
-import { createProjects, projectIndex, projects } from '../Scripts/CreateProjects'
+import { projectIndex, projects } from '../Scripts/CreateProjects'
 import { Missing } from './Missing'
 import { ProjectsNavigator } from '../Components/ProjectsNavigator'
 import { StackList } from '../Components/StackList'
 import { FadeTransition } from "../Components/FadeTransition"
-
 
 
 const titleStyle = {
@@ -31,9 +30,14 @@ class Project extends React.Component {
         var index = projectIndex(this.props.match.params.id)
         this.state = {
             project: projects[index],
-            prevProject: (0) ? projects[index - 1].id : "",
-            nextProject: (0) ? projects[index + 1].id : ""
+            nextProject: (index > 0) ? projects[index - 1].id : "",
+            prevProject: (index < projects.length - 1) ? projects[index + 1].id : "",
+            pushURL: ""
         };
+    }
+
+    componentDidMount() {
+
     }
 
     pushToURL = (url) => {
@@ -44,19 +48,23 @@ class Project extends React.Component {
 
     render() {
         /*If user typed in project themselves into url bar*/
-        if (this.state.project == undefined || this.state.project.WIP==true) {
+        if (this.state.project === undefined || this.state.project.WIP === true) {
             return (
                 <FadeTransition
                     history={this.props.history}
                     pushURL={this.state.pushURL}
-                    content={<Missing pushToURL={this.pushToURL} 
-                    message="This project does not exist, or is currently a Work In Progress. Please try choosing a (different) project from the chart!"/>} />)
+                    content={<Missing
+                        pushToURL={this.pushToURL}
+                        message="This project does not exist, or is currently a Work In Progress. Please try choosing a (different) project from the chart!"
+                    />} />)
         }
         /*Otherwise, all is well, show them the projects!*/
         return (
             <FadeTransition
+                key={this.state.url}
                 history={this.props.history}
                 pushURL={this.state.pushURL}
+                url={this.props.location.pathname}
                 content={
                     <div style={{
                         width: "100%",
@@ -68,6 +76,7 @@ class Project extends React.Component {
 
                         <ProjectsNavigator pushToURL={this.pushToURL} nextProject={this.state.nextProject} prevProject={this.state.prevProject} />
 
+                             
                         <p style={mainTitleStyle}>
                             {this.state.project.title} {`\t`}
                             <span style={{fontSize: 15}}>({this.state.project.date})</span>

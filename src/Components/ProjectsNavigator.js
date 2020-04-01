@@ -10,21 +10,21 @@ function projectButtonStyle(url) {
         justifyContent: "center",
         borderRadius: 10,
         border: "2px solid #615b75",
-        background: (url) ? "#615b75" : "black",
+        background: (url) ? "#615b75" : "#3b3a36",
         transition: "opacity 0.3s ease",
         margin: 5,
+        cursor: (!url) && "not-allowed"
     }
 }
 
 
 class ProjectsNavigator extends React.Component {
 
-    changeProject = (url) => {
+    changeProject = (url, remount) => {
         if (url) {
-            this.props.pushToURL(url)
+            this.props.pushToURL(url, remount)
         }
     }
-
 
     render() {
         return (
@@ -36,22 +36,22 @@ class ProjectsNavigator extends React.Component {
                 height: 80,
                 width: "100%",
                 background: "rgb(100,100,0,0.0)",
-                cursor: "pointer"
+          
             }}>
                 <div className="img"
-                    onClick={() => this.changeProject(this.props.prevProject)}
+                    onClick={() => this.changeProject(this.props.prevProject, true)}
                     style={projectButtonStyle(this.props.prevProject)}>
                     <span style={{ color: "white" }}>{"<"} Previous Project</span>
                 </div>
 
                 <div className="img"
-                    onClick={() => this.props.pushToURL("/")}
+                    onClick={() => this.props.pushToURL("/", false)}
                     style={projectButtonStyle("/")}>
                     <span style={{ color: "white" }}>Return to Chart</span>
                 </div>
 
                 <div className="img"
-                    onClick={() => this.changeProject(this.props.nextProject)}
+                    onClick={() => this.changeProject(this.props.nextProject, true)}
                     style={projectButtonStyle(this.props.nextProject)}>
                     <span style={{ color: "white" }}>Next Project {">"}</span>
                 </div>

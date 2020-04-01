@@ -8,29 +8,30 @@ class CircleImageList extends React.Component {
     render() {
         var imageDisplay = [];
         var imageSize = 50;
-        var images = this.props.node.project.stack.map(item => item.image);
-        var imageSeperation = (this.props.hoverState) ? 13: 8;
+        var images = this.props.node.project.stack.map((item) => !item.hideInChart ? item.image : "");
+        var imageSeperation = (this.props.hoverState) ? 13 : 8;
         var imagesOffset = types[this.props.node.type].width + 90 + imageSeperation;
- 
-        images.forEach((url, index) => {
+        images.forEach((url) => {
             const imageStyle = {
-                width: imageSize,   
+                width: imageSize,
                 height: imageSize,
                 display: "flex",
                 position: "absolute",
-                marginLeft: (this.props.node.x * tileSize ) + imagesOffset + (imageSize + imageSeperation) * index,
-                marginTop: (this.props.node.y * tileSize ) - imageSize/2,
+                marginLeft: (this.props.node.x * tileSize) + imagesOffset + (imageSize + imageSeperation) * imageDisplay.length,
+                marginTop: (this.props.node.y * tileSize) - imageSize / 2,
                 borderRadius: 50,
                 transition: "opacity 0.4s ease, margin 0.4s ease",
-                opacity: (this.props.hoverState) ? 1:0.7
+                opacity: (this.props.hoverState) ? 1 : 0.7
             }
             let imageurl = "/images/" + url + ".png"
-            let imageNode = <img style={imageStyle} src={imageurl} />
-            imageDisplay.push(imageNode)
+            let imageNode = <img alt="" style={imageStyle} src={imageurl} />
+            if (url) {
+                imageDisplay.push(imageNode)
+            }
         })
 
         return (
-            <div style={{position:"relative"}}> {imageDisplay} </div>
+            <div style={{ position: "relative" }}> {imageDisplay} </div>
         )
     }
 }

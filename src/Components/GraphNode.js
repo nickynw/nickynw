@@ -6,8 +6,11 @@ import { tileSize } from '../Scripts/Global'
 class GraphNode extends React.Component {
 
   onMouseClick = () => {
-    if(this.props.node.type=="C"){
+    if(this.props.node.type==="C"){
       this.props.handleClick("/project/"+this.props.node.project.id)
+    }
+    if(this.props.node.type==="B"){
+      this.props.handleClick(this.props.node.value)
     }
   }
 
@@ -21,7 +24,7 @@ class GraphNode extends React.Component {
 
     const style = {
       position: "absolute",
-      marginLeft: (this.props.node.type == "C") ? x + 70 : x,
+      marginLeft: (this.props.node.type === "C") ? x + 70 : x,
       marginTop: y,
       width: types[this.props.node.type].width,
       height: types[this.props.node.type].height,
@@ -42,7 +45,7 @@ class GraphNode extends React.Component {
     const fontStyle = types[this.props.node.type].style;
 
     var text = this.props.node.text
-    if(this.props.node.type=="C"){
+    if(this.props.node.type==="C"){
       text = this.props.node.project.title
     }
 

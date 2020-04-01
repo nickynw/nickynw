@@ -8,8 +8,9 @@ class StackList extends React.Component {
         var stack = []
         this.props.stack.forEach((item) => {
             stack.push(
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <img src={imageurl(item.image)} style={{ width: 60, height: 60, marginRight: 50, borderRadius:2}}></img>{item.description}
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding:!item.image && 15}}>
+                    {item.image && <img alt="" src={imageurl(item.image)} style={{ width: 60, height: 60, marginRight: 50, borderRadius:2}}></img>}
+                    {item.description}
                 </div>)
         })
         return (

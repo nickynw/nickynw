@@ -31,7 +31,7 @@ class GraphLine extends React.Component {
           zIndex: -1,
           position: "absolute",
           width: 1000,
-          height: 1000,
+          height: 1300,
         }}>
 
         <path

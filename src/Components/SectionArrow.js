@@ -1,8 +1,5 @@
 import React from 'react';
 import '../App.css';
-import { tileSize } from '../Scripts/Global'
-
-
 
 function shift(n, direction, size) {
     let x = n + direction

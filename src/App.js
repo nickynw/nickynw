@@ -6,8 +6,6 @@ import { Switch, Route } from 'react-router-dom';
 import {Home} from "./Views/Home";
 import {Project} from "./Views/Project";
 import {Error404} from './Views/Error404'
-import {screenHeight, screenWidth} from './Scripts/Global'
-
 
 export const add = (x, y) => x + y;
 export const total = (shipping, subTotal) => "$" + (add(shipping, subTotal)).toString();
