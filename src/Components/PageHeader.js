@@ -66,7 +66,7 @@ function PageHeader(props) {
         <img style={profileStyle} alt="" src={"/images/profile.png"} ></img>
         <a href="https://www.linkedin.com/in/nicknwilson/"><img alt="" className="img" style={linkedinStyle} src={"/images/linkedin.png"} ></img></a>
         <a href="https://github.com/nickynw"><img alt="" className="img" style={githubStyle} src={"/images/github.png"} ></img></a>
-        <a style={{color:"white"}} href="/Nick_CV_03_2020.pdf"><img alt="" className="img" style={githubStyle} src={"/images/CV.png"} ></img></a> 
+        <a style={{color:"white"}} href="/Nicholas_CV_04_2020.pdf"><img alt="" className="img" style={githubStyle} src={"/images/CV.png"} ></img></a> 
         <a href="mailto:nicknwilson@outlook.com"><img alt="" style={emailStyle} src={"/images/email.png"} ></img></a>
         <p style={{ color: "white", fontSize: 13 }}><a href="mailto:nicknwilson@outlook.com">nicknwilson@outlook.com</a></p>
       
