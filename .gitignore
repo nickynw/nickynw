@@ -1,8 +1,4 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-setupTests.js
-serviceWorker.js
-App.test.js
-Nodes.test.js
 # dependencies
 /node_modules
 /.pnp
@@ -13,6 +9,8 @@ Nodes.test.js
 
 # production
 /build
+
+/ignore
 
 # misc
 .DS_Store
