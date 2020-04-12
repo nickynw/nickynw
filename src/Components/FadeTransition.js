@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import { tileSize } from '../Scripts/Global';
 
 class FadeTransition extends React.Component {
     constructor(props) {
@@ -33,12 +34,18 @@ class FadeTransition extends React.Component {
     }
 
     tick(direction) {
+        this.setState({ trigger: false })
         if (this.props.pushURL !== undefined && direction === "out") {
+            console.log("pushing")
             this.props.history.push(this.props.pushURL)
 
-            if (!this.props.pushURL.includes("/")) {
-                window.scrollTo(0, 0);
-                window.location.reload();
+            //For non-rerouting reloading
+            if (this.props.changeProject && this.props.pushURL != "/") {
+                if (window.pageYOffset > 120) {
+                    window.scrollTo(0, 120)
+                }
+                this.props.changeProject(this.props.pushURL)
+                this.setState({ opacity: 1 })
             }
         }
 

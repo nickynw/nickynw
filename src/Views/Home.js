@@ -32,7 +32,6 @@ class Home extends React.Component {
         });
     }
 
-
 /*this.state.pushURL is passed to graphnodes, which can change it to a new url*/
 render() {
     var nodes = graphObjects()

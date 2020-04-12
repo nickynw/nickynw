@@ -88,7 +88,7 @@ var unchained = () => {
         { image: "javascript", description: "Principal language, along with JSX for working with React." },
         { image: "reactnative", description: "React Native, a Javascript Library, was used to build a mobile application for both iOS and Android." },
         { image: "expo", hideInChart:true, description: "The Expo framework for React Native was used as a testing suite and to publish the app." },
-        { image: "firebase", description: "Google Firebase was used as a NoSQL database to store the names of existing Cafe Chains online to check against dynamically." },
+        { image: "firebase", description: "Google Firebase was used as a NoSQL database to store the names of existing Cafe Chains online to check against." },
         { image: "googlemaps", description: "Google Maps API was used to search for nearby places, retrieve details, photos and distances." },
         { image: "googleadmob", description: "Google AdMob was used to monetize the app, as api requests cost a small amount of money." }
     ]
@@ -97,20 +97,17 @@ var unchained = () => {
         "Create a new App for both iOS and Android that fills a gap in the market / provides a service me and my friends actually wanted to use. (Easily searching for independent cafes nearby)"
     ]
     var content =
-        (<div style={{ display: "in-line" }}>
-            This project is available on github at <a href="https://github.com/nickynw/Unchained">https://github.com/nickynw/Unchained</a>, however apikeys for the firebase, google maps api and google ads will need to be replaced for it to work, alternatively there is dummy data that can be used.
+        (<div style={{ display: "flex", flexDirection: "column" }}>
+            <p>This project is available on github at <a href="https://github.com/nickynw/Unchained">https://github.com/nickynw/Unchained</a>, however apikeys for the firebase, google maps api and google ads will need to be replaced for it to work, alternatively there is dummy data that can be used.</p>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
                 <p>Unchained is a mobile app I made as practise for working with React Native and working with external API's such as google maps.
                 This app aims to create an easy-to-read list of nearby cafes, with information on distance and open-times, with cafes that are part of chain groups (e.g. Costa, Starbucks) filtered out.
-            Based on this list, user's can make an easy decision about which cafe they want to go to, if it's open long enough, too far away, and is not part of a chain. </p>
+                   Based on this list, user's can make an easy decision about which cafe they want to go to, if it's open long enough, too far away, and is not part of a chain. </p>
 
-            <div style={figureStyle}>
+               <div style={figureStyle}>
                     <img alt=""style={figureImage} src={imageurl("unchainedoverview")}></img>
                     Figure 1: Screenshots of the working app taken from my android phone, on the left is the initial screen, on the right is taken after a results search performed in Camden, London.
-                    </div>
-
-         
+                 </div>
 
                 <p>In hindsight, it may have been easier to learn React first, however I am happy with how the app turned out.
                 I learnt how to work with multiple nested asynchronous callbacks when making multiple HTTP requests to retrieve data from google maps.
@@ -119,7 +116,7 @@ var unchained = () => {
                 Furthermore, I had the opportunity to gather user-feedback, which allowed me develop the UI. As part of this I also learned how to use InkScape to produce custom-made SVG graphics.
             Lastly, I am happy I got to see at the very least, an amateur perspective on app development, from the initial concept, to publishing on the playstore, thanks to the Expo framework. </p>
 
-            </div></div>)
+            </div>)
     var future = [
         "In terms of future direction for this app, as of march, once the google ads are approved I will hopefully upload the app on the google play store so my friends can use it. This has been delayed due to the COVID-19 Pandemic (As I am unsure if the google data will reflect quarantine closings)",
         "Possibly develop an iOS version (At the moment I am having difficulties emulating without access to apple products, and I can't borrow anything due to quarantine)",
@@ -154,7 +151,7 @@ var qbot = () => {
         "Produce a website that provides unlimited, randomised and difficult to answer Multiple Choice Questions, using the relationships between data points with a focus on medicine."
     ]
     var content =
-        (<div style={{ display: "in-line" }}>
+        (<div style={{ display: "flex", flexDirection: "column" }}>
             This project will soon be made available on github. To summarise the project, the MCQ generator is a web application for use primarily by medical students.
             Using the relationships between data in a back-end database, it forms questions which are difficult to answer, as fake alternative answers are drawn from nearby, related nodes.
             Question and answer combinations are randomised, and answers can be grouped together to form another layer of complexity. (See previews at bottom of page)
@@ -186,18 +183,20 @@ var qbot = () => {
 
             <br></br>
 
-            Preview of Exambot: Left is index/home view, Right is example of MCQ question generated. The user has got one answer correct and one answer wrong.
-            <img alt=""style={{ margin: 20, borderRadius: 10, opacity: 0.8 }} src={imageurl("exambotpreview")}></img>
 
-            Preview of Qbot: Left is index/home view, Right is example of MCQ question generated. The user got the question correct.
-             This appearance change in contrast to exambot reflects my intention to make this a potential mobile app in the future.
-            <img alt=""style={{ margin: 20, borderRadius: 10, opacity: 0.8 }} src={imageurl("qbotpreview")}></img>
+                <div style={figureStyle}>
+                    <img alt=""style={figureImage} src={imageurl("exambotpreview")}></img>
+                    Figure 1: Preview of Exambot: Left is index/home view, Right is example of MCQ question generated. The user has got one answer correct and one answer wrong.
+                 </div>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
+                 <div style={figureStyle}>
+                    <img alt=""style={figureImage} src={imageurl("qbotpreview")}></img>
+                    Figure 2: Preview of Qbot: Left is index/home view, Right is example of MCQ question generated. The user got the question correct.
+                 This appearance change in contrast to exambot reflects my intention to make this a potential mobile app in the future.
+                 </div>
 
-
-
-            </div></div>)
+         
+         </div>)
     var future = [
         "Develop a mobile app version, possibly using React Native",
         "Add a lot more data to the graph database to work with and create questions from, in multiple categories.",
@@ -291,7 +290,7 @@ var mscparkinsons = () => {
             
         </div>)
     var future = [
-        "I am not currently workig on this project anymore, however potential future improvements and routes for research are listed in the thesis.",
+        "I am not currently working on this project anymore, however potential future improvements and routes for research are listed in the thesis.",
         "Implement a number of changes/fix a small number of errors based on user-feedback following the experiment.",
         "Improved accessibility, as the experience is currently only available on Oculus Go.",
         "Higher fidelity simulation, due to limited use of haptics and the time constraints, there may be a misrepresentation of people's experiences in the simulation.",
@@ -304,10 +303,10 @@ var mscparkinsons = () => {
 }
 
 var miscjava = () => {
-    var WIP = true
+    var WIP = false
     var id = "miscjava"
     var date = "04/2019"
-    var title = "Misc Java Projects (Under Construction)"
+    var title = "Misc Java/JavaFX Projects"
     var stack = [
         { image: "java", description: "Java was used to introduce us to object orientated programming and unit testing." },
         { image: "javafx", description: "Allows GUI with (current version) Java without using any external libraries." },
@@ -316,12 +315,25 @@ var miscjava = () => {
         "Produce various Java projects to consolidating learning of the language"
     ]
     var content =
-        (<div>
-            The description and review section is currently a WIP.
+    ( <div style={{ display: "flex", flexDirection: "column" }}>
+            For our final project in my Computer Science course for Java we were tasked with building a java program with a GUI.
+            The style is geared towards an 'arcade' feel. I chose to use JavaFX and work in 3D so that I could apply some mathematical concepts I wanted to work with at the time. 
+            
+            <br/><br/>The game is called U.F.O.O.P (Unidentified Flying Object Orientated Programming).
+            I've prepared a short video (with no audio) showcasing the four different game modes you can play at various difficulties in a random order. The aim is to fire your laser beam to destroy the sphere to collect points, whilst avoiding generated 3D obstacles.
+            <div style={{padding: 50}}><iframe width="560" height="315" src="https://www.youtube.com/embed/8YVE0CmONRw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+            Other projects waiting to be added:
+
+            <ul>Group Software Engineering Project in Java: Building an educational Game </ul>
+            <ul>DatabaseBot: Simple database management application (terminal + Gui)</ul>
+
+
 
         </div>)
     var future = [
-        "WIP"
+        "Continue to develop new applications in Java outside of the course. So far I have delved into Java only for minor projects.",
+        "Utilise Java alongside API's / libraries like spring or swagger."
 
     ]
     return {

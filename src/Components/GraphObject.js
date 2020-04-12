@@ -7,7 +7,7 @@ import { GraphDate } from '../Components/GraphDate'
 
 class GraphObject extends React.Component {
     constructor(props) {
-        super(props);
+        super(props);   
         this.state = {
             hoverState: false
         };

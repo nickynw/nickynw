@@ -24,7 +24,7 @@ const mainTitleStyle = {
 
 const divStyle = {
     width: "100%",
-    minWidth: document.documentElement.clientWidth,
+    minWidth: document.documentElement.clientWidth-25,
     display: "flex",
     flexDirection: "column",
     marginBottom: 80
@@ -50,14 +50,23 @@ class Project extends React.Component {
             project: projects[index],
             nextProject: (index > 0) ? projects[index - 1].id : "",
             prevProject: (index < projects.length - 1) ? projects[index + 1].id : "",
-            pushURL: ""
+            pushURL: "",
+            fadeKey: ""
         };
     }
 
     pushToURL = (url) => {
+        console.log(url)
+        this.setState({pushURL: url});
+    }
+
+    changeProject = (url) => {
+        var index = projectIndex(url)
         this.setState({
-            pushURL: url
-        });
+            project: projects[index],
+            nextProject: (index > 0) ? projects[index - 1].id : "",
+            prevProject: (index < projects.length - 1) ? projects[index + 1].id : "",
+        })
     }
 
     render() {
@@ -75,9 +84,9 @@ class Project extends React.Component {
         /*Otherwise, all is well, show them the projects!*/
         return (
             <FadeTransition
-                key={this.state.url}
                 history={this.props.history}
                 pushURL={this.state.pushURL}
+                changeProject={this.changeProject}
                 url={this.props.location.pathname}
                 content={
                     <div style={divStyle}>
