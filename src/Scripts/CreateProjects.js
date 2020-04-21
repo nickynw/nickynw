@@ -1,6 +1,11 @@
 import React from 'react';
 import '../App.css';
 
+/*If you're looking at this javascript file, I apologise for it's length as it's
+been copied and pasted into one big file. My intention was to eventually
+transition to some kind of database, but I wanted to get everything written down
+and up on the website while I'm job hunting. Cheers, Nick :) */
+
 const imageurl = (url) => "/images/" + url + ".png"
 
 const figureStyle = {
@@ -31,12 +36,12 @@ var nickynwsite = () => {
     var stack = [
         { image: "javascript", description: "Principal language, along with JSX for working with React." },
         { image: "react", description: "React, a Javascript Library, was used to build a component-based web app." },
-        { image: "githubpages", description: "Github pages was is currently being used to deploy the site for free." }
+        { image: "githubpages", description: "Github pages is currently being used to deploy the static site for free." }
     ]
     var goals = [
-        "Introduce myself to the React javascript framework",
-        "Develop my skills in javascript",
-        "Write-up/collate previous projects together in one location for easy reading and summaries."
+        "Introduce myself to the React Javascript Framework",
+        "Develop my ability to code in Javascript/JSX",
+        "Write-up/collate my previous projects together into one location for people to read when necessary."
     ]
     var content =
         (<div style={{ display: "flex", flexDirection: "column" }}>
@@ -45,8 +50,9 @@ var nickynwsite = () => {
 
             <p>I actually started working on this site after already using React Native to make an app (see previous project).
             As I had a positive experience with React Native, I thought I'd also make my personal website using React.js, which would also have the added benefit of consolidating some of the shared concepts that I covered using these frameworks.
-            I've learnt a lot building this site. It made me really think about how to organise and reuse my components, and how children components can manipulate the states of parents in a 'React' way (e.g. setting the url via the graph nodes).
-                There has also been lots of opportunity to learn css tricks to make the UI nicer to look at and more interactive.
+            I've feel like I've definitely learned a lot from building this relatively simple site.
+            It made me really think about how to organise and reuse my components, more so than for my mobile app. In particular how children components can manipulate the states of parents in a more 'React' way.
+            There has also been lots of opportunity to learn css tricks to make the UI feel nicer to look at, with more interaction and feedback.
             </p>
 
             <p>
@@ -63,16 +69,14 @@ var nickynwsite = () => {
             Figure 1: Screenshot taken of the first version of the website, which used an algorithm to do a forced-direction graph for project navigation.
             </div>
 
-
-        
-
         </div>)
     var future = [
         "Add the Art and Design section - Subject to feedback",
-        "I haven't looked into accessibility for this website yet, in terms of colour, layout etc.",
+        "I haven't looked into accessibility for this website yet, in terms of colour, layout etc. and I am aware this is often overlooked during development.",
         "Develop a dynamic site where users can fill forms to contact myself, comment/like images, and serve information on projects from a database as opposed to from static files.",
         "Make the graph nodes in the flow chart move in an automatic, force-directed fashion rather than hard-coded coordinates.",
-        "Finish Misc Java Projects (this is mainly because they're all graphic Java programs I'm thinking of taking a screen video)"
+        "Finish Misc Java Projects (this is mainly because they're all graphic Java programs I'm thinking of taking a screen video)",
+        "Make a mobile-friendly version of the site"
     ]
     return {
         WIP: WIP, id: id, date: date, title: title, stack: stack, goals: goals, content: content, future: future
@@ -93,7 +97,7 @@ var unchained = () => {
         { image: "googleadmob", description: "Google AdMob was used to monetize the app, as api requests cost a small amount of money." }
     ]
     var goals = [
-        "Introduce myself to the React Native and develop my skills in javascript.",
+        "Introduce myself to the React Native and develop my skills in Javascript.",
         "Create a new App for both iOS and Android that fills a gap in the market / provides a service me and my friends actually wanted to use. (Easily searching for independent cafes nearby)"
     ]
     var content =
@@ -145,16 +149,16 @@ var qbot = () => {
         { image: "neo4j", description: "Neo4J provided a DBMS for the graph database and provided a driver for connecting to the database using Python." }
     ]
     var goals = [
-        "Develop my skills in Python, including by finding uses for higher-order functions and by using libraries and drivers.",
-        "Create a live website with dynamic pages connected to a back-end database.",
-        "Learn how to implement Graph databases (and learn CYPHER) as well as a relational Database (with PostgreSQL) and compare them.",
+        "Develop my skills in Python, including by finding uses for higher-order functions and external libraries.",
+        "Create a live website with dynamic pages connected to a database.",
+        "Learn how to implement a Graph database (and learn CYPHER) as well as a relational Database (with PostgreSQL) and compare them.",
         "Produce a website that provides unlimited, randomised and difficult to answer Multiple Choice Questions, using the relationships between data points with a focus on medicine."
     ]
     var content =
         (<div style={{ display: "flex", flexDirection: "column" }}>
             This project will soon be made available on github. To summarise the project, the MCQ generator is a web application for use primarily by medical students.
             Using the relationships between data in a back-end database, it forms questions which are difficult to answer, as fake alternative answers are drawn from nearby, related nodes.
-            Question and answer combinations are randomised, and answers can be grouped together to form another layer of complexity. (See previews at bottom of page)
+            Question and answer combinations are randomised, and answers can be grouped together to form another layer of complexity to the questions. (See previews at bottom of page)
 
             Both websites are hosted for free online via Heroku, however after visiting it will take ~1 minute to load as the web worker sleeps after inactivity.
 
@@ -167,7 +171,7 @@ var qbot = () => {
 
             <p>The original concept for this project came from when I was preparing materials for my job during third year neuroscience as a 'PASS Leader'.
             This role was in essence, to help reinforce first year's learning at university by tutoring them.
-            I have always felt I've had a knack for preparing MCQ's, and thought that it would be cool if I could find a way to programmatically produce randomised questions in various topics to print and give out to my students.
+            I have always felt I've had a knack for preparing MCQ's, and thought that it would be interested to see if I could find a way to programmatically produce randomised questions in various topics to print and give out to my students.
             The first version of the website was built before I had any formal introduction to coding, and so I had to self-teach python, html, css and javascript and learn how Django and PostgreSQL worked to create a prototype website (Version 1, Exambot).
             </p>
 
@@ -312,7 +316,8 @@ var miscjava = () => {
         { image: "javafx", description: "Allows GUI with (current version) Java without using any external libraries." },
     ]
     var goals = [
-        "Produce various Java projects to consolidating learning of the language"
+        "Produce various Java projects to consolidating learning of the language",
+        "Learn how to create Java-based GUI using JavaFX"
     ]
     var content =
     ( <div style={{ display: "flex", flexDirection: "column" }}>
@@ -324,11 +329,8 @@ var miscjava = () => {
             <div style={{padding: 50}}><iframe width="560" height="315" src="https://www.youtube.com/embed/8YVE0CmONRw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
             Other projects waiting to be added:
-
-            <ul>Group Software Engineering Project in Java: Building an educational Game </ul>
-            <ul>DatabaseBot: Simple database management application (terminal + Gui)</ul>
-
-
+            <ul>Group Software Engineering Project in Java: Building an educational platform game using JavaFX </ul>
+            <ul>DatabaseBot: A simple database management application (using terminal and a GUI)</ul>
 
         </div>)
     var future = [
